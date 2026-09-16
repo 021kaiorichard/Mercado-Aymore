@@ -1,0 +1,8 @@
+{
+  "_type": "product",
+  "name": "Teste Café Especial",
+  "category": "Bebidas",
+  "price": 18.9,
+  "description": "Produto de teste para validar o catálogo do Mercado Aymoré.",
+  "featured": true
+}

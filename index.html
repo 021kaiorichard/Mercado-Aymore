@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mercado Aymoré | Seu mercado de bairro em Nova Iguaçu</title>
+  <meta name="description" content="No Mercado Aymoré você encontra preço justo, produtos frescos e atendimento próximo em Riachão, Nova Iguaçu.">
+  <meta name="theme-color" content="#e30613">
+  <meta property="og:title" content="Mercado Aymoré | Riachão, Nova Iguaçu">
+  <meta property="og:description" content="Preço justo, produto fresco e atendimento de confiança perto de você.">
+  <meta property="og:type" content="website">
+  <style>
+    :root {
+      --red: #e30613;
+      --red-deep: #b90410;
+      --ink: #171717;
+      --muted: #66645f;
+      --paper: #fbfaf8;
+      --warm: #f4f0e9;
+      --line: #e5e0d8;
+      --white: #fff;
+      --shadow: 0 20px 45px rgba(30, 23, 17, .1);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: "DM Sans", sans-serif; line-height: 1.55; }
+    body.menu-open { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--red); font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2 { font-family: Fraunces, Georgia, serif; letter-spacing: -.035em; line-height: 1.04; }
+    h1 { max-width: 720px; margin-bottom: 22px; font-size: clamp(3rem, 7vw, 6.4rem); }
+    h2 { margin-bottom: 18px; font-size: clamp(2.35rem, 4.6vw, 4rem); }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 19px; border: 1px solid transparent; border-radius: 3px; font-weight: 700; font-size: .9rem; transition: transform .2s ease, background .2s ease, color .2s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-red { background: var(--red); color: var(--white); }
+    .button-red:hover { background: var(--red-deep); }
+    .button-light { background: var(--white); color: var(--red); }
+    .button-outline { border-color: rgba(255,255,255,.55); color: var(--white); }
+    .button-outline:hover { background: var(--white); color: var(--ink); }
+    .button-quiet { border-color: var(--line); color: var(--ink); background: transparent; }
+    .button-quiet:hover { border-color: var(--red); color: var(--red); }
+    .site-header { position: fixed; z-index: 20; top: 0; left: 0; width: 100%; border-bottom: 1px solid rgba(255,255,255,.14); color: var(--white); transition: background .3s ease, box-shadow .3s ease, color .3s ease; }
+    .site-header.scrolled { background: rgba(255,255,255,.97); color: var(--ink); box-shadow: 0 4px 20px rgba(20,15,10,.08); border-color: var(--line); }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; height: 78px; }
+    .brand { display: inline-flex; align-items: center; gap: 9px; padding: 8px 12px 8px 6px; background: var(--red); color: var(--white); font-weight: 700; font-size: 1.05rem; letter-spacing: -.02em; }
+    .brand-text em { display: block; color: #ffd400; font-family: Fraunces, Georgia, serif; font-size: 1.15em; font-style: normal; line-height: .8; }
+    .footer-brand .brand-text { order: 1; }.footer-brand .brand-mark { order: 2; }
+    .scrolled .brand-text em { color: #ffd400; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: .88rem; font-weight: 600; }
+    .nav-links a { opacity: .86; transition: opacity .2s ease, color .2s ease; }
+    .nav-links a:hover { opacity: 1; color: #ffd400; }
+    .scrolled .nav-links a:hover { color: var(--red); }
+    .header-contact { min-height: 40px; padding: 0 14px; font-size: .8rem; }
+    .menu-toggle { display: none; width: 42px; height: 42px; padding: 0; border: 0; background: transparent; color: currentColor; cursor: pointer; }
+    .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after { display: block; width: 22px; height: 2px; margin: auto; background: currentColor; transition: transform .2s ease; }
+    .menu-toggle span { position: relative; }
+    .menu-toggle span::before, .menu-toggle span::after { content: ""; position: absolute; left: 0; }
+    .menu-toggle span::before { top: -7px; }.menu-toggle span::after { top: 7px; }
+    .hero { position: relative; min-height: min(790px, 90vh); display: flex; align-items: center; overflow: hidden; color: var(--white); background: #4a1712 url("https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=2000&q=82") center/cover; }
+    .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16,10,8,.84) 0%, rgba(16,10,8,.55) 46%, rgba(16,10,8,.1) 100%); }
+    .hero::after { content: ""; position: absolute; right: -110px; bottom: -180px; width: 440px; height: 440px; border: 1px solid rgba(255,255,255,.17); border-radius: 50%; box-shadow: 0 0 0 55px rgba(255,255,255,.04), 0 0 0 110px rgba(255,255,255,.03); }
+    .hero-content { position: relative; z-index: 1; padding: 150px 0 100px; }
+    .hero h1 span { color: #ffd400; }
+    .hero-copy { max-width: 500px; margin-bottom: 30px; color: rgba(255,255,255,.85); font-size: 1.08rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .location-icon, .cart-icon { width: 17px; height: 17px; flex: 0 0 17px; fill: currentColor; }
+    .hero-note { display: flex; align-items: center; gap: 10px; margin-top: 74px; color: rgba(255,255,255,.8); font-size: .84rem; }
+    .hero-note strong { color: var(--white); }
+    .hero-note .star { color: #ffd400; font-size: 1.1rem; }
+    section { padding: 110px 0; }
+    .intro-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 100px; align-items: center; }
+    .intro-grid p { max-width: 560px; color: var(--muted); font-size: 1.05rem; }
+    .intro-lead { color: var(--ink) !important; font-size: 1.3rem !important; line-height: 1.4; }
+    .red-rule { width: 60px; height: 4px; margin: 25px 0; background: var(--red); }
+    .detail-list { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 34px; padding-top: 25px; border-top: 1px solid var(--line); }
+    .detail-list strong { display: block; margin-bottom: 3px; font-size: .9rem; }.detail-list span { color: var(--muted); font-size: .85rem; }
+    .band { background: var(--warm); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 35px; margin-bottom: 45px; }
+    .section-heading p { max-width: 380px; margin-bottom: 4px; color: var(--muted); }
+    .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .benefit { min-height: 235px; padding: 28px; background: var(--paper); transition: background .25s ease, transform .25s ease; }
+    .benefit:hover { position: relative; z-index: 1; background: var(--white); transform: translateY(-5px); box-shadow: var(--shadow); }
+    .benefit:nth-child(2), .benefit:nth-child(4), .benefit:nth-child(2):hover, .benefit:nth-child(4):hover { background: #ffd400; }
+    .benefit h3 { margin-bottom: 12px; color: var(--red); font-size: 1.15rem; }.benefit p { margin: 0; color: var(--muted); font-size: .98rem; }
+    .location-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 70px; align-items: stretch; }
+    .contact-stack { display: grid; gap: 0; margin: 36px 0; border-top: 1px solid var(--line); }
+    .contact-row { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); }.contact-row b { display: block; margin-bottom: 3px; font-size: .8rem; text-transform: uppercase; letter-spacing: .09em; }.contact-row span { color: var(--muted); font-size: .94rem; }.contact-icon { width: 22px; color: var(--red); font-size: 1.1rem; text-align: center; }
+    .map-frame { min-height: 440px; border: 8px solid var(--white); box-shadow: var(--shadow); background: #ddd; }.map-frame iframe { display: block; width: 100%; height: 100%; min-height: 424px; border: 0; filter: saturate(.75); }
+    .review-section { position: relative; overflow: hidden; background: var(--red); color: var(--white); }.review-section::before { content: "\201C"; position: absolute; top: -75px; left: 8%; color: rgba(255,255,255,.12); font-family: Georgia, serif; font-size: 23rem; line-height: 1; }.review-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.2fr; gap: 100px; align-items: center; }.review-section .eyebrow { color: #ffd400; }.review-section h2 { max-width: 460px; }.review-main { display: flex; align-items: center; gap: 24px; }.rating-number { font-family: Fraunces, Georgia, serif; font-size: 5.5rem; line-height: 1; }.rating-stars { color: #ffd400; font-size: 1.2rem; letter-spacing: 3px; }.review-copy { margin: 22px 0 0; color: rgba(255,255,255,.8); font-size: .96rem; }
+    footer { padding: 58px 0 25px; background: #171717; color: #fff; }.footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 45px; padding-bottom: 50px; }.footer-brand { margin-bottom: 18px; }.footer-about { max-width: 240px; color: #aaa; font-size: .88rem; }.footer-title { margin-bottom: 17px; color: #ffd400; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }.footer-links { display: grid; gap: 8px; color: #aaa; font-size: .88rem; }.footer-links a:hover { color: #fff; }.copyright { display: flex; justify-content: space-between; gap: 20px; padding-top: 22px; border-top: 1px solid #333; color: #888; font-size: .75rem; }
+    .whatsapp-float, .instagram-float { position: fixed; z-index: 15; right: 22px; display: flex; align-items: center; gap: 9px; padding: 12px 17px; border-radius: 3px; color: #fff; box-shadow: 0 10px 25px rgba(0,0,0,.2); font-size: .82rem; font-weight: 700; transition: transform .2s ease; }.whatsapp-float { bottom: 22px; background: #1caa59; }.instagram-float { bottom: 76px; background: #c13584; }.whatsapp-float:hover, .instagram-float:hover { transform: translateY(-3px); }.social-icon { display: block; width: 24px; height: 24px; flex: 0 0 24px; fill: currentColor; shape-rendering: geometricPrecision; }
+    :focus-visible { outline: 3px solid #ffd400; outline-offset: 3px; }
+    .brand-mark { display: inline-block; width: 42px; height: 42px; background: url("carrinho1-sem-fundo.png") center / contain no-repeat; }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#inicio" aria-label="Mercado Aymoré, início">
+        <span class="brand-text">Mercado <em>Aymoré</em></span>
+        <span class="brand-mark" aria-hidden="true"></span>
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Navegação principal">
+        <a href="#inicio">Início</a><a href="sobre.html">Sobre</a><a href="produtos.html">Produtos</a><a href="promocoes.html">Promoções</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-content">
+        <span class="eyebrow">Do jeitinho do seu bairro</span>
+        <h1>O mercado de confiança da sua <span>vizinhança.</span></h1>
+        <p class="hero-copy">Preço justo, produto fresquinho e aquele atendimento que conhece você pelo nome. Venha fazer suas compras com a gente.</p>
+        <div class="hero-actions"><a class="button button-red" href="#localizacao"><span>Como chegar</span><svg class="location-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg></a><a class="button button-outline" href="#diferenciais"><span>Por que comprar aqui</span><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1A2.4 2.4 0 0 0 9.45 16H18v-2H9.45a.4.4 0 0 1-.39-.32L8.8 13H18a2 2 0 0 0 1.94-1.52L21.5 5H7.1l-.42-2H3v1Zm5.4 3h10.54l-.95 3.99a.4.4 0 0 1-.39.31H9.23L8.4 7ZM10 19a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm7 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></svg></a></div>
+        <div class="hero-note"><span class="star" aria-hidden="true">★</span><span><strong>4,0 no Google</strong> · 461 avaliações de quem compra aqui</span></div>
+      </div>
+    </section>
+
+    <section class="band" id="diferenciais">
+      <div class="container"><div class="section-heading"><div><span class="eyebrow">Por que o Aymoré?</span><h2>O essencial, bem feito.</h2></div><p>Uma experiência simples, cuidadosa e sem complicação para você comprar do seu jeito.</p></div>
+        <div class="benefits-grid">
+          <article class="benefit"><h3>Frescor de verdade</h3><p>Escolhemos tudo com cuidado para chegar bonito e gostoso na sua mesa.</p></article>
+          <article class="benefit"><h3>Preço que cabe</h3><p>Ofertas e preços justos para você levar o que precisa sem susto no caixa.</p></article>
+          <article class="benefit"><h3>Atendimento próximo</h3><p>Aqui você é cliente, vizinho e parte da nossa história todos os dias.</p></article>
+          <article class="benefit"><h3>Perto da sua rotina</h3><p>Uma parada prática em Riachão para resolver a compra da casa.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="localizacao">
+      <div class="container location-grid"><div><span class="eyebrow">Venha visitar</span><h2>Estamos no caminho da sua casa.</h2><p>Fácil de encontrar em Riachão, Nova Iguaçu. Passe para uma compra rápida ou para fazer a feira da semana.</p>
+        <div class="contact-stack"><a class="contact-row" href="tel:+552137944437"><span class="contact-icon" aria-hidden="true">⌕</span><span><b>Telefone</b><span>(21) 3794-4437</span></span></a><div class="contact-row"><span class="contact-icon" aria-hidden="true">◷</span><span><b>Horário</b><span>Aberto hoje até 21:00</span></span></div><div class="contact-row"><span class="contact-icon" aria-hidden="true">⌖</span><span><b>Endereço</b><span>Estr. da Palhada, 2760 - Riachão<br>Nova Iguaçu - RJ, 26279-155</span></span></div></div>
+        <a class="button button-red" href="https://www.google.com/maps/dir/?api=1&destination=Estrada+da+Palhada%2C+2760%2C+Nova+Igua%C3%A7u%2C+RJ" target="_blank" rel="noopener">Abrir rota no Google Maps <span aria-hidden="true">↗</span></a>
+      </div><div class="map-frame"><iframe title="Mapa do Mercado Aymoré" loading="lazy" src="https://www.google.com/maps?q=Mercado+Aymore,+Estrada+da+Palhada,+2760,+Nova+Iguacu,+RJ&output=embed"></iframe></div></div>
+    </section>
+
+    <section class="review-section"><div class="container review-inner"><div><span class="eyebrow">Quem já conhece</span><h2>Compra boa é aquela que dá vontade de voltar.</h2></div><div><div class="review-main"><span class="rating-number">4,0</span><div><div class="rating-stars" aria-label="4 de 5 estrelas">★★★★<span style="opacity:.4">★</span></div><strong>461 avaliações no Google</strong></div></div><p class="review-copy">A opinião de quem passa por aqui todos os dias ajuda a gente a continuar melhorando. Obrigado por fazer parte do Mercado Aymoré.</p><a class="button button-light" href="https://www.google.com/search?q=Mercado+Aymor%C3%A9+Nova+Igua%C3%A7u" target="_blank" rel="noopener">Ver avaliações <span aria-hidden="true">↗</span></a></div></div></section>
+  </main>
+
+  <footer id="contato"><div class="container"><div class="footer-grid"><div class="footer-brand-col"><a class="brand footer-brand" href="#inicio"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text">Mercado <em>Aymoré</em></span></a><p class="footer-about">O mercado de bairro que cuida das suas compras como você cuidaria.</p></div><div><div class="footer-title">Visite</div><div class="footer-links"><span>Estr. da Palhada, 2760</span><span>Riachão · Nova Iguaçu - RJ</span><a href="https://www.google.com/maps/dir/?api=1&destination=Estrada+da+Palhada%2C+2760%2C+Nova+Igua%C3%A7u%2C+RJ" target="_blank" rel="noopener">Como chegar ↗</a></div></div><div><div class="footer-title">Fale com a gente</div><div class="footer-links"><a href="tel:+552137944437">(21) 3794-4437</a><a data-whatsapp href="https://wa.me/552137944437?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Mercado%20Aymor%C3%A9" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.instagram.com/mercadoaymore" target="_blank" rel="noopener">Instagram ↗</a></div></div><div><div class="footer-title">Funcionamento</div><div class="footer-links"><span>Aberto até 21:00</span><span>Confira o horário antes de sair</span><a href="#inicio">Voltar ao topo ↑</a></div></div></div><div class="copyright"><span>© 2026 Mercado Aymoré. Todos os direitos reservados.</span><span>Riachão, Nova Iguaçu - RJ</span></div></div></footer>
+  <a class="instagram-float" href="https://www.instagram.com/mercadoaymore" target="_blank" rel="noopener" aria-label="Acessar o Instagram do Mercado Aymoré"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm9.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg><span>Instagram</span></a><a class="whatsapp-float" data-whatsapp href="https://wa.me/552137944437?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Mercado%20Aymor%C3%A9" target="_blank" rel="noopener" aria-label="Falar com o Mercado Aymoré pelo WhatsApp"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.66 15L2 22l5.18-1.31A10 10 0 1 0 12 2Zm0 2a8 8 0 0 1 6.93 12L18.2 17.1l.23.36A8 8 0 0 1 7.07 18.2l-.36-.23-2.67.68.7-2.6-.25-.38A8 8 0 1 1 12 4Zm-3.1 3.2c-.2 0-.52.08-.8.39-.28.3-1.08 1.05-1.08 2.57s1.1 2.98 1.25 3.19c.15.2 2.14 3.42 5.26 4.65 2.6 1.03 3.13.83 3.69.78.56-.05 1.8-.74 2.05-1.46.25-.72.25-1.33.17-1.46-.08-.13-.3-.2-.64-.37-.33-.17-1.98-.98-2.28-1.09-.3-.12-.52-.17-.74.17-.22.33-.85 1.09-1.04 1.31-.19.22-.38.25-.7.08-.33-.17-1.38-.51-2.63-1.63-.97-.87-1.62-1.94-1.81-2.27-.19-.33-.02-.52.14-.69.14-.14.33-.38.5-.57.16-.2.22-.33.33-.55.11-.22.06-.42-.03-.59-.08-.17-.74-1.83-1.01-2.5-.27-.65-.54-.56-.74-.56Z"/></svg><span>WhatsApp</span></a>
+  <script>
+    const header = document.querySelector('#site-header');
+    const menuToggle = document.querySelector('#menu-toggle');
+    const navLinks = document.querySelector('#nav-links');
+    const setHeaderState = () => header.classList.toggle('scrolled', window.scrollY > 25);
+    setHeaderState();
+    window.addEventListener('scroll', setHeaderState, { passive: true });
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('is-open');
+      document.body.classList.toggle('menu-open', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('is-open'); document.body.classList.remove('menu-open'); menuToggle.setAttribute('aria-expanded', 'false'); menuToggle.setAttribute('aria-label', 'Abrir menu');
+    }));
+  </script>
+</body>
+</html>
