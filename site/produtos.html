@@ -20,7 +20,7 @@
 
     .brand-mark { display:inline-block; width:42px; height:42px; background:url("carrinho1-sem-fundo.png") center / contain no-repeat; }
 
-    .menu-toggle { position: relative; }
+.menu-toggle { position: relative; }
     .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after { display: block; width: 20px; height: 2px; margin: auto; background: currentColor; }
     .menu-toggle span::before, .menu-toggle span::after { content: ""; position: absolute; left: 0; }
     .menu-toggle span::before { top: -6px; } .menu-toggle span::after { top: 6px; }
@@ -29,8 +29,21 @@
       .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 6px; padding: 16px 20px 20px; background: var(--white); border-bottom: 1px solid var(--line); box-shadow: 0 12px 24px rgba(20,15,10,.1); display: none; }
       .nav-links.is-open { display: flex; }
       .nav-links a { width: 100%; padding: 8px 0; }
-      .catalog-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .catalog-tab { flex: 0 0 auto; white-space: nowrap; }
+      .catalog-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
+      .catalog-tab { flex: 0 0 auto; white-space: nowrap; padding: 8px 12px; font-size: .85rem; }
+      .page-hero { padding: 80px 0 60px; }
+      .content { padding: 50px 0 80px; }
+      .catalog-space { min-height: 280px; padding: 24px; }
+      .catalog-space strong { font-size: 1.4rem; }
+      .footer-row { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .page-hero h1 { font-size: clamp(2rem, 12vw, 3rem); }
+      h2 { font-size: clamp(2rem, 8vw, 3rem); }
+      .catalog-tab { padding: 6px 10px; font-size: .8rem; }
+      .whatsapp-float span, .instagram-float span { display: none; }
+      .whatsapp-float, .instagram-float { padding: 12px; border-radius: 50%; right: 16px; }
+      .instagram-float { bottom: 68px; }
     }
     @media (max-width: 400px) {
       .whatsapp-float span, .instagram-float span { display: none; }

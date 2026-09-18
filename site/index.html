@@ -102,14 +102,36 @@
       .nav-links a { opacity: 1; color: var(--ink); width: 100%; padding: 10px 0; }
       .nav-links a:hover { color: var(--red); }
       .intro-grid, .location-grid, .review-inner { grid-template-columns: 1fr; gap: 40px; }
-      .benefits-grid { grid-template-columns: 1fr 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
       .hero-content { padding: 130px 0 70px; }
+      .section-heading { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .section-heading p { max-width: none; }
+      .map-frame { min-height: 300px; }
+      .map-frame iframe { min-height: 280px; }
+      .contact-row { flex-direction: column; gap: 4px; align-items: flex-start; }
+      .contact-icon { width: auto; }
+      .review-section::before { left: 50%; transform: translateX(-50%); font-size: 15rem; top: -50px; }
+      .review-main { flex-direction: column; gap: 8px; text-align: center; }
+      .rating-number { font-size: 4rem; }
+      .footer-brand { justify-content: center; text-align: center; }
+      .footer-links { justify-items: center; }
+      .copyright { flex-direction: column; gap: 8px; text-align: center; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .button { width: 100%; }
+      .hero-note { margin-top: 40px; }
     }
     @media (max-width: 480px) {
-      .benefits-grid, .footer-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: clamp(2rem, 12vw, 3rem); }
+      .hero-content { padding: 110px 0 60px; }
+      h2 { font-size: clamp(2rem, 8vw, 3rem); }
+      .benefit { padding: 20px; }
+      .rating-number { font-size: 3.2rem; }
       .whatsapp-float span, .instagram-float span { display: none; }
-      .whatsapp-float, .instagram-float { padding: 12px; border-radius: 50%; }
+      .whatsapp-float, .instagram-float { padding: 12px; border-radius: 50%; right: 16px; }
+      .instagram-float { bottom: 68px; }
+      .map-frame { min-height: 250px; }
+      .map-frame iframe { min-height: 230px; }
     }
   </style>
 </head>

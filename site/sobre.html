@@ -29,10 +29,20 @@
       .nav-links.is-open { display: flex; }
       .nav-links a { width: 100%; padding: 8px 0; }
       .story-grid, .detail-list { grid-template-columns: 1fr; gap: 28px; }
+      .quote-block { padding: 24px; }
+      .quote-block p { font-size: 1.3rem; }
+      .footer-row { flex-direction: column; gap: 12px; text-align: center; }
+      .page-hero { padding: 80px 0 60px; }
+      .story { padding: 70px 0 80px; }
     }
-    @media (max-width: 400px) {
+    @media (max-width: 480px) {
+      .page-hero h1 { font-size: clamp(2rem, 12vw, 3rem); }
+      h2 { font-size: clamp(2rem, 8vw, 3rem); }
+      .story-copy .lead { font-size: 1.15rem; }
+      .quote-block p { font-size: 1.1rem; }
       .whatsapp-float span, .instagram-float span { display: none; }
-      .whatsapp-float, .instagram-float { padding: 12px; border-radius: 50%; }
+      .whatsapp-float, .instagram-float { padding: 12px; border-radius: 50%; right: 16px; }
+      .instagram-float { bottom: 68px; }
     }
   </style>
 </head>
