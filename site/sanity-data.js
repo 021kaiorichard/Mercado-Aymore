@@ -40,10 +40,17 @@ function ensureStyles() {
   style.textContent = `
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 280px));
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
       justify-content: start;
-      gap: 24px;
+      gap: 18px;
       margin-top: 18px;
+    }
+    @media (min-width: 640px) {
+      .products-grid, .promotions-grid { gap: 24px; }
+    }
+    @media (min-width: 900px) {
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 280px)); }
+      .promotions-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 320px)); }
     }
     .product-card {
       display: flex;
@@ -55,7 +62,8 @@ function ensureStyles() {
     }
     .product-image {
       width: 100%;
-      height: 190px;
+      aspect-ratio: 4 / 3;
+      height: auto;
       background: #f6f0eb;
       overflow: hidden;
     }
@@ -97,7 +105,8 @@ function ensureStyles() {
     }
     .product-card h3 {
       margin: 0;
-      font-size: 1.35rem;
+      overflow-wrap: break-word;
+      font-size: 1.25rem;
       line-height: 1.2;
       font-family: Fraunces, Georgia, serif;
     }
@@ -108,6 +117,7 @@ function ensureStyles() {
     }
     .product-bottom {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
@@ -117,20 +127,26 @@ function ensureStyles() {
       font-size: 1.25rem;
       color: var(--ink, #171717);
     }
-    .product-bottom button {
-      padding: 10px 14px;
+    .product-bottom .product-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
       border: none;
       border-radius: 4px;
       background: var(--red, #e30613);
       color: var(--white, #fff);
+      font-size: 0.9rem;
       font-weight: 700;
+      text-decoration: none;
       cursor: pointer;
     }
     .promotions-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 320px));
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
       justify-content: start;
-      gap: 24px;
+      gap: 18px;
       margin-top: 18px;
     }
     .promotion-card {
@@ -141,7 +157,8 @@ function ensureStyles() {
     }
     .promotion-image {
       width: 100%;
-      height: 210px;
+      aspect-ratio: 4 / 3;
+      height: auto;
       background: #f6f0eb;
     }
     .promotion-image img {
@@ -167,7 +184,8 @@ function ensureStyles() {
     }
     .promotion-card h3 {
       margin: 14px 0 12px;
-      font-size: 1.55rem;
+      overflow-wrap: break-word;
+      font-size: 1.4rem;
       line-height: 1.2;
       font-family: Fraunces, Georgia, serif;
     }
@@ -178,6 +196,7 @@ function ensureStyles() {
     }
     .promotion-meta {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
@@ -188,8 +207,9 @@ function ensureStyles() {
     .empty-state {
       display: grid;
       place-items: center;
+      grid-column: 1 / -1;
       min-height: 220px;
-      padding: 30px;
+      padding: 24px;
       border: 1px dashed #d9cfc2;
       background: var(--paper, #fbfaf8);
       text-align: center;
@@ -207,6 +227,13 @@ function escapeHtml(value) {
     '"': '&quot;',
     "'": '&#39;',
   }[char]));
+}
+
+const WHATSAPP_NUMBER = '552137944437';
+
+function whatsappLink(productName) {
+  const text = `Olá! Vim pelo site do Mercado Aymoré e queria saber sobre: ${productName || 'um produto'}`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 
 let cachedProducts = [];
@@ -239,7 +266,7 @@ function renderProducts(products, activeCategory) {
     <article class="product-card">
       <div class="product-image">
         ${imageUrl
-          ? `<img src="${escapeHtml(imageUrl)}" alt="${name}">`
+          ? `<img src="${escapeHtml(imageUrl)}" alt="${name}" loading="lazy">`
           : `<div class="image-placeholder">Mercado Aymoré</div>`}
       </div>
       <div class="product-body">
@@ -248,7 +275,7 @@ function renderProducts(products, activeCategory) {
         <p>${description}</p>
         <div class="product-bottom">
           <strong>${formatPrice(product.price)}</strong>
-          <button type="button">Solicitar</button>
+          <a class="product-cta" href="${escapeHtml(whatsappLink(product.name))}" target="_blank" rel="noopener">Solicitar</a>
         </div>
       </div>
     </article>
@@ -334,7 +361,7 @@ async function loadPromotions() {
       <article class="promotion-card">
         <div class="promotion-image">
           ${imageUrl
-            ? `<img src="${escapeHtml(imageUrl)}" alt="${title}">`
+            ? `<img src="${escapeHtml(imageUrl)}" alt="${title}" loading="lazy">`
             : `<div class="image-placeholder">Oferta</div>`}
         </div>
         <div class="promotion-body">
