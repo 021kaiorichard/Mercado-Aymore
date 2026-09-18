@@ -6,6 +6,7 @@
   <title>Mercado Aymoré | Seu mercado de bairro em Nova Iguaçu</title>
   <meta name="description" content="No Mercado Aymoré você encontra preço justo, produtos frescos e atendimento próximo em Riachão, Nova Iguaçu.">
   <meta name="theme-color" content="#e30613">
+  <meta name="build-version" content="mobile-fix-2">
   <meta property="og:title" content="Mercado Aymoré | Seu mercado de bairro em Nova Iguaçu">
   <meta property="og:description" content="No Mercado Aymoré você encontra preço justo, produtos frescos e atendimento próximo em Riachão, Nova Iguaçu.">
   <meta property="og:type" content="website">
@@ -19,13 +20,16 @@
       --shadow:0 20px 45px rgba(30,23,17,.1); --header-h:70px;
     }
     * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
-    body { margin:0; overflow-x:hidden; color:var(--ink); background:var(--paper); font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.55; }
+    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; overflow-x:hidden; }
+    html, body { max-width:100%; overflow-x:clip; overscroll-behavior-x:none; }
+    body { position:relative; width:100%; margin:0; overflow-x:hidden; color:var(--ink); background:var(--paper); font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.55; }
     body.menu-open { overflow:hidden; }
-    img, svg, iframe { max-width:100%; }
+    img, svg, iframe, video, table, pre { max-width:100%; }
+    main, section, header, footer, .container { max-width:100%; }
     a { color:inherit; text-decoration:none; }
     button { font:inherit; }
-    h1, h2, h3, p { margin-top:0; overflow-wrap:break-word; }
+    h1, h2, h3, p, a, span, strong, li { overflow-wrap:break-word; word-break:break-word; }
+    h1, h2, h3, p { margin-top:0; }
     h1, h2 { font-family:Fraunces,Georgia,serif; letter-spacing:-.035em; line-height:1.06; }
     h1 { max-width:720px; margin-bottom:20px; font-size:clamp(2.1rem,8.5vw,3.2rem); }
     h2 { margin-bottom:16px; font-size:clamp(1.9rem,7.5vw,2.6rem); }
@@ -99,7 +103,7 @@
     .site-header.scrolled { background:rgba(255,255,255,.97); color:var(--ink); box-shadow:0 4px 20px rgba(20,15,10,.08); border-color:var(--line); }
     .hero { position:relative; display:flex; align-items:center; overflow:hidden; color:var(--white); background:#4a1712 url("https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1600&q=80") center/cover; }
     .hero::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(16,10,8,.88) 0%, rgba(16,10,8,.72) 55%, rgba(16,10,8,.6) 100%); }
-    .hero-content { position:relative; z-index:1; width:calc(100% - 32px); max-width:1160px; margin:0 auto; padding:120px 0 70px; }
+    .hero-content { position:relative; z-index:1; width:calc(100% - 32px); max-width:100%; max-width:1160px; margin:0 auto; padding:120px 0 70px; }
     .hero h1 span { color:var(--yellow); }
     .hero-copy { max-width:500px; margin-bottom:26px; color:rgba(255,255,255,.88); font-size:1rem; }
     .hero-actions { display:flex; flex-direction:column; gap:12px; }
@@ -126,7 +130,7 @@
     .map-frame { min-height:320px; border:6px solid var(--white); background:#ddd; box-shadow:var(--shadow); }
     .map-frame iframe { display:block; width:100%; height:100%; min-height:308px; border:0; filter:saturate(.75); }
     .review-section { position:relative; overflow:hidden; background:var(--red); color:var(--white); }
-    .review-section::before { content:"\201C"; position:absolute; top:-40px; left:12px; color:rgba(255,255,255,.12); font-family:Georgia,serif; font-size:11rem; line-height:1; }
+    .review-section::before { content:"\201C"; pointer-events:none; position:absolute; top:-40px; left:12px; color:rgba(255,255,255,.12); font-family:Georgia,serif; font-size:11rem; line-height:1; }
     .review-inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr; gap:34px; align-items:center; }
     .review-section .eyebrow { color:var(--yellow); }
     .review-section h2 { max-width:460px; }
