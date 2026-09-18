@@ -95,6 +95,44 @@
     .whatsapp-float, .instagram-float { position: fixed; z-index: 15; right: 22px; display: flex; align-items: center; gap: 9px; padding: 12px 17px; border-radius: 3px; color: #fff; box-shadow: 0 10px 25px rgba(0,0,0,.2); font-size: .82rem; font-weight: 700; transition: transform .2s ease; }.whatsapp-float { bottom: 22px; background: #1caa59; }.instagram-float { bottom: 76px; background: #c13584; }.whatsapp-float:hover, .instagram-float:hover { transform: translateY(-3px); }.social-icon { display: block; width: 24px; height: 24px; flex: 0 0 24px; fill: currentColor; shape-rendering: geometricPrecision; }
     :focus-visible { outline: 3px solid #ffd400; outline-offset: 3px; }
     .brand-mark { display: inline-block; width: 42px; height: 42px; background: url("carrinho1-sem-fundo.png") center / contain no-repeat; }
+    @media (max-width: 760px) {
+      .menu-toggle { display: flex; align-items: center; justify-content: center; }
+      .nav-links { position: fixed; top: 78px; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 4px; padding: 16px 20px 20px; background: var(--white); color: var(--ink); box-shadow: 0 12px 24px rgba(20,15,10,.12); display: none; }
+      .nav-links.is-open { display: flex; }
+      .nav-links a { opacity: 1; color: var(--ink); width: 100%; padding: 10px 0; }
+      .nav-links a:hover { color: var(--red); }
+      .intro-grid, .location-grid, .review-inner { grid-template-columns: 1fr; gap: 40px; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero-content { padding: 130px 0 70px; }
+      .section-heading { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .section-heading p { max-width: none; }
+      .map-frame { min-height: 300px; }
+      .map-frame iframe { min-height: 280px; }
+      .contact-row { flex-direction: column; gap: 4px; align-items: flex-start; }
+      .contact-icon { width: auto; }
+      .review-section::before { left: 50%; transform: translateX(-50%); font-size: 15rem; top: -50px; }
+      .review-main { flex-direction: column; gap: 8px; text-align: center; }
+      .rating-number { font-size: 4rem; }
+      .footer-brand { justify-content: center; text-align: center; }
+      .footer-links { justify-items: center; }
+      .copyright { flex-direction: column; gap: 8px; text-align: center; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .button { width: 100%; }
+      .hero-note { margin-top: 40px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: clamp(2rem, 12vw, 3rem); }
+      .hero-content { padding: 110px 0 60px; }
+      h2 { font-size: clamp(2rem, 8vw, 3rem); }
+      .benefit { padding: 20px; }
+      .rating-number { font-size: 3.2rem; }
+      .whatsapp-float span, .instagram-float span { display: none; }
+      .whatsapp-float, .instagram-float { padding: 12px; border-radius: 50%; right: 16px; }
+      .instagram-float { bottom: 68px; }
+      .map-frame { min-height: 250px; }
+      .map-frame iframe { min-height: 230px; }
+    }
   </style>
 </head>
 <body>
@@ -144,7 +182,7 @@
   </main>
 
   <footer id="contato"><div class="container"><div class="footer-grid"><div class="footer-brand-col"><a class="brand footer-brand" href="#inicio"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text">Mercado <em>Aymoré</em></span></a><p class="footer-about">O mercado de bairro que cuida das suas compras como você cuidaria.</p></div><div><div class="footer-title">Visite</div><div class="footer-links"><span>Estr. da Palhada, 2760</span><span>Riachão · Nova Iguaçu - RJ</span><a href="https://www.google.com/maps/dir/?api=1&destination=Estrada+da+Palhada%2C+2760%2C+Nova+Igua%C3%A7u%2C+RJ" target="_blank" rel="noopener">Como chegar ↗</a></div></div><div><div class="footer-title">Fale com a gente</div><div class="footer-links"><a href="tel:+552137944437">(21) 3794-4437</a><a data-whatsapp href="https://wa.me/552137944437?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Mercado%20Aymor%C3%A9" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.instagram.com/mercadoaymore" target="_blank" rel="noopener">Instagram ↗</a></div></div><div><div class="footer-title">Funcionamento</div><div class="footer-links"><span>Aberto até 21:00</span><span>Confira o horário antes de sair</span><a href="#inicio">Voltar ao topo ↑</a></div></div></div><div class="copyright"><span>© 2026 Mercado Aymoré. Todos os direitos reservados.</span><span>Riachão, Nova Iguaçu - RJ</span></div></div></footer>
-  <a class="instagram-float" href="https://www.instagram.com/mercadoaymore" target="_blank" rel="noopener" aria-label="Acessar o Instagram do Mercado Aymoré"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm9.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg><span>Instagram</span></a><a class="whatsapp-float" data-whatsapp href="https://wa.me/552137944437?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Mercado%20Aymor%C3%A9" target="_blank" rel="noopener" aria-label="Falar com o Mercado Aymoré pelo WhatsApp"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.66 15L2 22l5.18-1.31A10 10 0 1 0 12 2Zm0 2a8 8 0 0 1 6.93 12L18.2 17.1l.23.36A8 8 0 0 1 7.07 18.2l-.36-.23-2.67.68.7-2.6-.25-.38A8 8 0 1 1 12 4Zm-3.1 3.2c-.2 0-.52.08-.8.39-.28.3-1.08 1.05-1.08 2.57s1.1 2.98 1.25 3.19c.15.2 2.14 3.42 5.26 4.65 2.6 1.03 3.13.83 3.69.78.56-.05 1.8-.74 2.05-1.46.25-.72.25-1.33.17-1.46-.08-.13-.3-.2-.64-.37-.33-.17-1.98-.98-2.28-1.09-.3-.12-.52-.17-.74.17-.22.33-.85 1.09-1.04 1.31-.19.22-.38.25-.7.08-.33-.17-1.38-.51-2.63-1.63-.97-.87-1.62-1.94-1.81-2.27-.19-.33-.02-.52.14-.69.14-.14.33-.38.5-.57.16-.2.22-.33.33-.55.11-.22.06-.42-.03-.59-.08-.17-.74-1.83-1.01-2.5-.27-.65-.54-.56-.74-.56Z"/></svg><span>WhatsApp</span></a>
+  <a class="instagram-float" href="https://www.instagram.com/mercadoaymore" target="_blank" rel="noopener" aria-label="Acessar o Instagram do Mercado Aymoré"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm9.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg><span>Instagram</span></a><a class="whatsapp-float" data-whatsapp href="https://wa.me/552137944437?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Mercado%20Aymor%C3%A9" target="_blank" rel="noopener" aria-label="Falar com o Mercado Aymoré pelo WhatsApp"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-1.732-.866-2.868-1.548-4.01-3.507-.303-.522.302-.483.865-1.61.098-.198.05-.371-.05-.52-.099-.148-.222-.024-.348-.198-.126-.173-1.077-2.59-1.305-2.94-.198-.32-.4-.298-.6-.298h-.51c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.04 2.876 1.19 3.076.148.198 2.02 3.084 4.901 4.202 2.881 1.117 2.881.744 3.401.696.52-.05 1.686-.69 1.928-1.36.242-.669.242-1.24.17-1.36-.072-.121-.27-.198-.57-.347z"/><path d="M20.52 3.449C12.831-3.984.106 1.407.101 11.91c0 2.18.529 4.284 1.508 6.169L0 24l6.097-1.593a11.95 11.95 0 0 0 5.837 1.502h.005c9.412 0 15.62-9.95 12.164-18.18a12.02 12.02 0 0 0-3.583-2.28zM12.05 21.788a9.788 9.788 0 0 1-5.166-1.41l-.371-.221-3.837 1.006 1.024-3.744-.242-.386a9.77 9.77 0 0 1-1.542-5.271c0-5.42 4.408-9.827 9.828-9.827 5.421 0 9.828 4.408 9.828 9.827 0 5.42-4.407 9.828-9.828 9.828z"/></svg><span>WhatsApp</span></a>
   <script>
     const header = document.querySelector('#site-header');
     const menuToggle = document.querySelector('#menu-toggle');
