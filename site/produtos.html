@@ -2,184 +2,58 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Produtos | Mercado Aymoré</title>
   <meta name="description" content="Confira os produtos do Mercado Aymoré em Nova Iguaçu.">
   <meta name="theme-color" content="#e30613">
-  <meta name="build-version" content="mobile-fix-2">
   <meta property="og:title" content="Produtos | Mercado Aymoré">
   <meta property="og:description" content="Confira os produtos do Mercado Aymoré em Nova Iguaçu.">
   <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --red:#e30613; --red-deep:#b90410; --red-dark:#b90410; --ink:#171717; --muted:#66645f;
-      --paper:#fbfaf8; --warm:#f4f0e9; --line:#e5e0d8; --white:#fff; --yellow:#ffd400;
-      --shadow:0 20px 45px rgba(30,23,17,.1); --header-h:70px;
+    :root { --red:#e30613; --red-dark:#b90410; --ink:#171717; --muted:#66645f; --paper:#fbfaf8; --warm:#f4f0e9; --line:#e5e0d8; --white:#fff; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; color:var(--ink); background:var(--paper); font-family:"DM Sans",sans-serif; line-height:1.55; } a { color:inherit; text-decoration:none; } button { font:inherit; }
+    .container { width:min(1160px,calc(100% - 40px)); margin:0 auto; } h1,h2 { margin:0; font-family:Fraunces,Georgia,serif; letter-spacing:-.035em; line-height:1.04; } h1 { max-width:700px; font-size:clamp(3rem,7vw,6rem); } h2 { margin-bottom:18px; font-size:clamp(2.35rem,4.6vw,4rem); } .eyebrow { display:inline-flex; align-items:center; gap:10px; color:var(--red); font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; } .eyebrow::before { content:""; width:28px; height:2px; background:currentColor; }
+    .site-header { position:relative; z-index:10; background:var(--white); border-bottom:1px solid var(--line); box-shadow:0 4px 20px rgba(20,15,10,.08); } .nav-wrap { display:flex; align-items:center; justify-content:space-between; min-height:78px; } .brand { display:inline-flex; align-items:center; gap:9px; padding:8px 12px 8px 6px; background:var(--red); color:var(--white); font-weight:700; font-size:1.05rem; letter-spacing:-.02em; } .brand-text em { display:block; color:#ffd400; font-family:Fraunces,Georgia,serif; font-size:1.15em; font-style:normal; line-height:.8; }
+    .nav-links { display:flex; align-items:center; gap:25px; font-size:.88rem; font-weight:600; } .nav-links a { transition:color .2s ease; } .nav-links a:hover,.nav-links a.active { color:var(--red); } .button { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:0 19px; border:1px solid transparent; border-radius:3px; font-size:.9rem; font-weight:700; transition:transform .2s ease,background .2s ease; } .button:hover { transform:translateY(-2px); } .button-red { background:var(--red); color:var(--white); } .button-red:hover { background:var(--red-dark); } .header-contact { min-height:40px; padding:0 14px; font-size:.8rem; } .menu-toggle { display:none; width:42px; height:42px; border:0; background:transparent; color:var(--ink); }
+    .page-hero { padding:100px 0 85px; background:var(--warm); } .page-hero p { max-width:520px; margin:22px 0 0; color:var(--muted); font-size:1.05rem; } .content { padding:70px 0 110px; } .catalog-tabs { display:flex; gap:24px; margin-bottom:30px; padding-bottom:14px; border-bottom:1px solid var(--line); } .catalog-tab { padding:8px 0; border:0; border-bottom:2px solid transparent; background:transparent; color:var(--muted); font-weight:700; cursor:pointer; } .catalog-tab.active,.catalog-tab:hover { border-color:var(--red); color:var(--red); } .catalog-space { display:grid; place-items:center; min-height:360px; padding:40px; border:1px dashed #d9cfc2; background:var(--white); text-align:center; } .catalog-space strong { display:block; margin-bottom:8px; font-family:Fraunces,Georgia,serif; font-size:1.7rem; } .catalog-space p { max-width:450px; margin:0; color:var(--muted); }
+    footer { padding:30px 0; background:#171717; color:#aaa; font-size:.82rem; } .footer-row { display:flex; align-items:center; justify-content:space-between; gap:20px; } .footer-row a { color:#fff; font-weight:700; } .whatsapp-float, .instagram-float { position:fixed; z-index:15; right:22px; display:flex; align-items:center; gap:9px; padding:12px 17px; border-radius:3px; color:#fff; box-shadow:0 10px 25px rgba(0,0,0,.2); font-size:.82rem; font-weight:700; }.whatsapp-float { bottom:22px; background:#1caa59; }.instagram-float { bottom:76px; background:#c13584; }.social-icon { display:block; width:24px; height:24px; flex:0 0 24px; fill:currentColor; shape-rendering:geometricPrecision; } :focus-visible { outline:3px solid #ffd400; outline-offset:3px; }
+
+    .brand-mark { display:inline-block; width:42px; height:42px; background:url("carrinho1-sem-fundo.png") center / contain no-repeat; }
+
+    .menu-toggle { position: relative; }
+    .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after { display: block; width: 20px; height: 2px; margin: auto; background: currentColor; }
+    .menu-toggle span::before, .menu-toggle span::after { content: ""; position: absolute; left: 0; }
+    .menu-toggle span::before { top: -6px; } .menu-toggle span::after { top: 6px; }
+    @media (max-width: 760px) {
+      .menu-toggle { display: flex; align-items: center; justify-content: center; }
+      .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 6px; padding: 16px 20px 20px; background: var(--white); border-bottom: 1px solid var(--line); box-shadow: 0 12px 24px rgba(20,15,10,.1); display: none; }
+      .nav-links.is-open { display: flex; }
+      .nav-links a { width: 100%; padding: 8px 0; }
+      .catalog-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .catalog-tab { flex: 0 0 auto; white-space: nowrap; }
     }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; overflow-x:hidden; }
-    html, body { max-width:100%; overflow-x:clip; overscroll-behavior-x:none; }
-    body { position:relative; width:100%; margin:0; overflow-x:hidden; color:var(--ink); background:var(--paper); font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.55; }
-    body.menu-open { overflow:hidden; }
-    img, svg, iframe, video, table, pre { max-width:100%; }
-    main, section, header, footer, .container { max-width:100%; }
-    a { color:inherit; text-decoration:none; }
-    button { font:inherit; }
-    h1, h2, h3, p, a, span, strong, li { overflow-wrap:break-word; word-break:break-word; }
-    h1, h2, h3, p { margin-top:0; }
-    h1, h2 { font-family:Fraunces,Georgia,serif; letter-spacing:-.035em; line-height:1.06; }
-    h1 { max-width:720px; margin-bottom:20px; font-size:clamp(2.1rem,8.5vw,3.2rem); }
-    h2 { margin-bottom:16px; font-size:clamp(1.9rem,7.5vw,2.6rem); }
-    p { color:var(--muted); }
-    .container { width:calc(100% - 32px); max-width:1160px; margin:0 auto; }
-    .eyebrow { display:inline-flex; align-items:center; gap:10px; color:var(--red); font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
-    .eyebrow::before { content:""; width:28px; height:2px; flex:0 0 28px; background:currentColor; }
-    .button { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:0 19px; border:1px solid transparent; border-radius:3px; font-weight:700; font-size:.9rem; text-align:center; transition:transform .2s ease, background .2s ease, color .2s ease; }
-    .button:hover { transform:translateY(-2px); }
-    .button-red { background:var(--red); color:var(--white); }
-    .button-red:hover { background:var(--red-deep); }
-    .button-light { background:var(--white); color:var(--red); }
-    .button-outline { border-color:rgba(255,255,255,.55); color:var(--white); }
-    .button-outline:hover { background:var(--white); color:var(--ink); }
-
-    /* ---------- Cabecalho / menu ---------- */
-    .nav-wrap { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:var(--header-h); }
-    .brand { display:inline-flex; align-items:center; gap:8px; padding:7px 11px 7px 6px; background:var(--red); color:var(--white); font-weight:700; font-size:.95rem; letter-spacing:-.02em; }
-    .brand-text em { display:block; color:var(--yellow); font-family:Fraunces,Georgia,serif; font-size:1.15em; font-style:normal; line-height:.85; }
-    .brand-mark { display:inline-block; width:36px; height:36px; flex:0 0 36px; background:url("carrinho1-sem-fundo.png") center / contain no-repeat; }
-    .nav-links { position:fixed; z-index:19; top:var(--header-h); left:0; right:0; display:flex; flex-direction:column; gap:4px; padding:14px 16px 20px; background:var(--white); color:var(--ink); border-bottom:1px solid var(--line); box-shadow:0 12px 26px rgba(20,15,10,.14); transform:translateY(-130%); opacity:0; visibility:hidden; transition:transform .3s ease, opacity .3s ease, visibility .3s ease; }
-    .nav-links.is-open { transform:translateY(0); opacity:1; visibility:visible; }
-    .nav-links a { width:100%; padding:13px 12px; border-radius:3px; color:var(--ink); font-size:1rem; font-weight:600; text-align:center; }
-    .nav-links a:hover, .nav-links a.active { color:var(--red); background:var(--warm); }
-    .menu-toggle { display:flex; align-items:center; justify-content:center; width:44px; height:44px; flex:0 0 44px; padding:0; border:0; background:transparent; color:currentColor; cursor:pointer; }
-    .menu-toggle span { position:relative; display:block; width:22px; height:2px; background:currentColor; transition:background .2s ease; }
-    .menu-toggle span::before, .menu-toggle span::after { content:""; position:absolute; left:0; display:block; width:22px; height:2px; background:currentColor; transition:transform .25s ease; }
-    .menu-toggle span::before { top:-7px; }
-    .menu-toggle span::after { top:7px; }
-    .menu-toggle[aria-expanded="true"] span { background:transparent; }
-    .menu-toggle[aria-expanded="true"] span::before { transform:translateY(7px) rotate(45deg); }
-    .menu-toggle[aria-expanded="true"] span::after { transform:translateY(-7px) rotate(-45deg); }
-
-    /* ---------- Botoes flutuantes ---------- */
-    .whatsapp-float, .instagram-float { position:fixed; z-index:16; right:14px; display:flex; align-items:center; justify-content:center; gap:9px; padding:13px; border-radius:50%; color:#fff; box-shadow:0 10px 25px rgba(0,0,0,.2); font-size:.8rem; font-weight:700; transition:transform .2s ease; }
-    .whatsapp-float { bottom:14px; background:#1caa59; }
-    .instagram-float { bottom:74px; background:#c13584; }
-    .whatsapp-float:hover, .instagram-float:hover { transform:translateY(-3px); }
-    .whatsapp-float span, .instagram-float span { display:none; }
-    .social-icon { display:block; width:22px; height:22px; flex:0 0 22px; fill:currentColor; shape-rendering:geometricPrecision; }
-    :focus-visible { outline:3px solid var(--yellow); outline-offset:3px; }
-
-    @media (min-width:600px) {
-      .whatsapp-float, .instagram-float { right:22px; padding:12px 17px; border-radius:3px; font-size:.82rem; }
-      .whatsapp-float { bottom:22px; }
-      .instagram-float { bottom:76px; }
-      .whatsapp-float span, .instagram-float span { display:inline; }
-      .social-icon { width:24px; height:24px; flex:0 0 24px; }
-    }
-
-    @media (min-width:769px) {
-      :root { --header-h:78px; }
-      .container { width:calc(100% - 40px); }
-      h1 { margin-bottom:22px; font-size:clamp(3rem,6vw,5.4rem); }
-      h2 { margin-bottom:18px; font-size:clamp(2.35rem,4.6vw,4rem); }
-      .brand { gap:9px; padding:8px 12px 8px 6px; font-size:1.05rem; }
-      .brand-mark { width:42px; height:42px; flex:0 0 42px; }
-      .nav-links { position:static; flex-direction:row; align-items:center; gap:25px; width:auto; padding:0; background:transparent; border:0; box-shadow:none; transform:none; opacity:1; visibility:visible; color:inherit; font-size:.88rem; font-weight:600; }
-      .nav-links a { width:auto; padding:0; border-radius:0; color:inherit; font-size:.88rem; }
-      .nav-links a:hover, .nav-links a.active { background:transparent; color:var(--red); }
-      .menu-toggle { display:none; }
-    }
-
-    @media (prefers-reduced-motion:reduce) {
-      html { scroll-behavior:auto; }
-      * { transition-duration:.01ms !important; animation-duration:.01ms !important; }
-    }
-
-    .site-header { position:relative; z-index:20; background:var(--white); border-bottom:1px solid var(--line); box-shadow:0 4px 20px rgba(20,15,10,.08); }
-    .page-hero { padding:56px 0 48px; background:var(--warm); }
-    .page-hero p { max-width:52ch; margin:18px 0 0; font-size:1rem; }
-    footer { padding:26px 0; background:#171717; color:#aaa; font-size:.82rem; }
-    .footer-row { display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; }
-    .footer-row a { color:#fff; font-weight:700; }
-    @media (min-width:769px) {
-      .page-hero { padding:100px 0 85px; }
-      .page-hero p { margin:22px 0 0; font-size:1.05rem; }
-      footer { padding:30px 0; }
-      .footer-row { flex-direction:row; align-items:center; justify-content:space-between; gap:20px; text-align:left; }
-    }
-    .content { padding:40px 0 70px; }
-    .catalog-tabs { display:flex; max-width:100%; overscroll-behavior-x:contain; gap:8px; margin-bottom:24px; padding-bottom:8px; border-bottom:1px solid var(--line); overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
-    .catalog-tabs::-webkit-scrollbar { display:none; }
-    .catalog-tab { flex:0 0 auto; padding:8px 12px; border:0; border-bottom:2px solid transparent; background:transparent; color:var(--muted); font-size:.85rem; font-weight:700; white-space:nowrap; cursor:pointer; }
-    .catalog-tab.active, .catalog-tab:hover { border-color:var(--red); color:var(--red); }
-    @media (min-width:769px) {
-      .content { padding:70px 0 110px; }
-      .catalog-tabs { gap:24px; margin-bottom:30px; padding-bottom:14px; }
-      .catalog-tab { padding:8px 0; font-size:.9rem; }
+    @media (max-width: 400px) {
+      .whatsapp-float span, .instagram-float span { display: none; }
+      .whatsapp-float, .instagram-float { padding: 12px; border-radius: 50%; }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="index.html#inicio" aria-label="Mercado Aymoré, página inicial"><span class="brand-text">Mercado <em>Aymoré</em></span><span class="brand-mark" aria-hidden="true"></span></a>
-      <nav class="nav-links" id="nav-links" aria-label="Navegação principal"><a href="index.html">Início</a><a href="sobre.html">Sobre</a><a class="active" href="produtos.html">Produtos</a><a href="promocoes.html">Promoções</a></nav>
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
-    </div>
-  </header>
-
-  <main>
-    <section class="page-hero">
-      <div class="container">
-        <span class="eyebrow">Catálogo</span>
-        <h1>Produtos para a sua casa.</h1>
-        <p>Uma área dedicada para você encontrar tudo o que precisa no Mercado Aymoré.</p>
-      </div>
-    </section>
-    <section class="content">
-      <div class="container">
-        <div class="catalog-tabs" role="tablist" aria-label="Categorias de produtos">
-          <button class="catalog-tab active" type="button" role="tab" aria-selected="true" data-category="all">Todos os produtos</button>
-          <button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="Mercearia">Mercearia</button>
-          <button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="Hortifruti">Hortifruti</button>
-          <button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="Bebidas">Bebidas</button>
-          <button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="Padaria">Padaria</button>
-          <button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="Limpeza">Limpeza</button>
-          <button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="Congelados">Congelados</button>
-        </div>
-        <div id="products-list" class="products-grid"></div>
-      </div>
-    </section>
-  </main>
-
-  <footer><div class="container footer-row"><span>© 2026 Mercado Aymoré · Riachão, Nova Iguaçu - RJ</span><a href="https://www.instagram.com/mercadoaymore" target="_blank" rel="noopener">Instagram ↗</a></div></footer>
-  <a class="instagram-float" href="https://www.instagram.com/mercadoaymore" target="_blank" rel="noopener" aria-label="Acessar o Instagram do Mercado Aymore"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm9.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg><span>Instagram</span></a>
-  <a class="whatsapp-float" href="https://wa.me/552137944437?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Mercado%20Aymor%C3%A9" target="_blank" rel="noopener" aria-label="Falar com o Mercado Aymore pelo WhatsApp"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.66 15L2 22l5.18-1.31A10 10 0 1 0 12 2Zm0 2a8 8 0 0 1 6.93 12L18.2 17.1l.23.36A8 8 0 0 1 7.07 18.2l-.36-.23-2.67.68.7-2.6-.25-.38A8 8 0 1 1 12 4Zm-3.1 3.2c-.2 0-.52.08-.8.39-.28.3-1.08 1.05-1.08 2.57s1.1 2.98 1.25 3.19c.15.2 2.14 3.42 5.26 4.65 2.6 1.03 3.13.83 3.69.78.56-.05 1.8-.74 2.05-1.46.25-.72.25-1.33.17-1.46-.08-.13-.3-.2-.64-.37-.33-.17-1.98-.98-2.28-1.09-.3-.12-.52-.17-.74.17-.22.33-.85 1.09-1.04 1.31-.19.22-.38.25-.7.08-.33-.17-1.38-.51-2.63-1.63-.97-.87-1.62-1.94-1.81-2.27-.19-.33-.02-.52.14-.69.14-.14.33-.38.5-.57.16-.2.22-.33.33-.55.11-.22.06-.42-.03-.59-.08-.17-.74-1.83-1.01-2.5-.27-.65-.54-.56-.74-.56Z"/></svg><span>WhatsApp</span></a>
-  <script>
-    (function () {
-      var toggle = document.getElementById('menu-toggle');
-      var nav = document.getElementById('nav-links');
-      if (!toggle || !nav) return;
-      var close = function () {
-        nav.classList.remove('is-open');
-        document.body.classList.remove('menu-open');
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Abrir menu');
-      };
-      toggle.addEventListener('click', function () {
-        var open = nav.classList.toggle('is-open');
-        document.body.classList.toggle('menu-open', open);
-        toggle.setAttribute('aria-expanded', String(open));
-        toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
-      });
-      nav.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', close); });
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
-      window.addEventListener('resize', function () { if (window.innerWidth > 768) close(); });
-    })();
-  </script>
+  <header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html#inicio" aria-label="Mercado Aymoré, página inicial"><span class="brand-text">Mercado <em>Aymoré</em></span><span class="brand-mark" aria-hidden="true"></span></a><nav class="nav-links" id="nav-links" aria-label="Navegação principal"><a href="index.html">Início</a><a href="sobre.html">Sobre</a><a class="active" href="produtos.html">Produtos</a><a href="promocoes.html">Promoções</a></nav><button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button></div></header>
+  <main><section class="page-hero"><div class="container"><span class="eyebrow">Catálogo</span><h1>Produtos para a sua casa.</h1><p>Uma área dedicada para você encontrar tudo o que precisa no Mercado Aymoré.</p></div></section><section class="content"><div class="container"><div class="catalog-tabs" role="tablist" aria-label="Categorias de produtos"><button class="catalog-tab active" type="button" role="tab" aria-selected="true" data-category="all">Todos os produtos</button><button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="Mercearia">Mercearia</button><button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="Hortifruti">Hortifruti</button><button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="Bebidas">Bebidas</button><button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="Padaria">Padaria</button><button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="Limpeza">Limpeza</button><button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="Congelados">Congelados</button></div><div id="products-list" class="products-grid"></div></div></section></main>
+  <footer><div class="container footer-row"><span>© 2026 Mercado Aymoré · Riachão, Nova Iguaçu - RJ</span><a href="https://www.instagram.com/mercadoaymore" target="_blank" rel="noopener">Instagram ↗</a></div></footer><a class="instagram-float" href="https://www.instagram.com/mercadoaymore" target="_blank" rel="noopener" aria-label="Acessar o Instagram do Mercado Aymoré"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm9.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg><span>Instagram</span></a><a class="whatsapp-float" href="https://wa.me/552137944437?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Mercado%20Aymor%C3%A9" target="_blank" rel="noopener" aria-label="Falar com o Mercado Aymoré pelo WhatsApp"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-1.732-.866-2.868-1.548-4.01-3.507-.303-.522.302-.483.865-1.61.098-.198.05-.371-.05-.52-.099-.148-.222-.024-.348-.198-.126-.173-1.077-2.59-1.305-2.94-.198-.32-.4-.298-.6-.298h-.51c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.04 2.876 1.19 3.076.148.198 2.02 3.084 4.901 4.202 2.881 1.117 2.881.744 3.401.696.52-.05 1.686-.69 1.928-1.36.242-.669.242-1.24.17-1.36-.072-.121-.27-.198-.57-.347z"/><path d="M20.52 3.449C12.831-3.984.106 1.407.101 11.91c0 2.18.529 4.284 1.508 6.169L0 24l6.097-1.593a11.95 11.95 0 0 0 5.837 1.502h.005c9.412 0 15.62-9.95 12.164-18.18a12.02 12.02 0 0 0-3.583-2.28zM12.05 21.788a9.788 9.788 0 0 1-5.166-1.41l-.371-.221-3.837 1.006 1.024-3.744-.242-.386a9.77 9.77 0 0 1-1.542-5.271c0-5.42 4.408-9.827 9.828-9.827 5.421 0 9.828 4.408 9.828 9.827 0 5.42-4.407 9.828-9.828 9.828z"/></svg><span>WhatsApp</span></a>
   <script src="sanity-data.js"></script>
+  <script>
+    const toggle = document.querySelector('#menu-toggle');
+    const nav = document.querySelector('#nav-links');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    });
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => nav.classList.remove('is-open'));
+    });
+  </script>
 </body>
 </html>

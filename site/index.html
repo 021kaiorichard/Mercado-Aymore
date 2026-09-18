@@ -2,221 +2,144 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mercado Aymoré | Seu mercado de bairro em Nova Iguaçu</title>
   <meta name="description" content="No Mercado Aymoré você encontra preço justo, produtos frescos e atendimento próximo em Riachão, Nova Iguaçu.">
   <meta name="theme-color" content="#e30613">
-  <meta name="build-version" content="mobile-fix-2">
-  <meta property="og:title" content="Mercado Aymoré | Seu mercado de bairro em Nova Iguaçu">
-  <meta property="og:description" content="No Mercado Aymoré você encontra preço justo, produtos frescos e atendimento próximo em Riachão, Nova Iguaçu.">
+  <meta property="og:title" content="Mercado Aymoré | Riachão, Nova Iguaçu">
+  <meta property="og:description" content="Preço justo, produto fresco e atendimento de confiança perto de você.">
   <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --red:#e30613; --red-deep:#b90410; --red-dark:#b90410; --ink:#171717; --muted:#66645f;
-      --paper:#fbfaf8; --warm:#f4f0e9; --line:#e5e0d8; --white:#fff; --yellow:#ffd400;
-      --shadow:0 20px 45px rgba(30,23,17,.1); --header-h:70px;
+      --red: #e30613;
+      --red-deep: #b90410;
+      --ink: #171717;
+      --muted: #66645f;
+      --paper: #fbfaf8;
+      --warm: #f4f0e9;
+      --line: #e5e0d8;
+      --white: #fff;
+      --shadow: 0 20px 45px rgba(30, 23, 17, .1);
     }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; overflow-x:hidden; }
-    html, body { max-width:100%; overflow-x:clip; overscroll-behavior-x:none; }
-    body { position:relative; width:100%; margin:0; overflow-x:hidden; color:var(--ink); background:var(--paper); font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.55; }
-    body.menu-open { overflow:hidden; }
-    img, svg, iframe, video, table, pre { max-width:100%; }
-    main, section, header, footer, .container { max-width:100%; }
-    a { color:inherit; text-decoration:none; }
-    button { font:inherit; }
-    h1, h2, h3, p, a, span, strong, li { overflow-wrap:break-word; word-break:break-word; }
-    h1, h2, h3, p { margin-top:0; }
-    h1, h2 { font-family:Fraunces,Georgia,serif; letter-spacing:-.035em; line-height:1.06; }
-    h1 { max-width:720px; margin-bottom:20px; font-size:clamp(2.1rem,8.5vw,3.2rem); }
-    h2 { margin-bottom:16px; font-size:clamp(1.9rem,7.5vw,2.6rem); }
-    p { color:var(--muted); }
-    .container { width:calc(100% - 32px); max-width:1160px; margin:0 auto; }
-    .eyebrow { display:inline-flex; align-items:center; gap:10px; color:var(--red); font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
-    .eyebrow::before { content:""; width:28px; height:2px; flex:0 0 28px; background:currentColor; }
-    .button { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:0 19px; border:1px solid transparent; border-radius:3px; font-weight:700; font-size:.9rem; text-align:center; transition:transform .2s ease, background .2s ease, color .2s ease; }
-    .button:hover { transform:translateY(-2px); }
-    .button-red { background:var(--red); color:var(--white); }
-    .button-red:hover { background:var(--red-deep); }
-    .button-light { background:var(--white); color:var(--red); }
-    .button-outline { border-color:rgba(255,255,255,.55); color:var(--white); }
-    .button-outline:hover { background:var(--white); color:var(--ink); }
-
-    /* ---------- Cabecalho / menu ---------- */
-    .nav-wrap { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:var(--header-h); }
-    .brand { display:inline-flex; align-items:center; gap:8px; padding:7px 11px 7px 6px; background:var(--red); color:var(--white); font-weight:700; font-size:.95rem; letter-spacing:-.02em; }
-    .brand-text em { display:block; color:var(--yellow); font-family:Fraunces,Georgia,serif; font-size:1.15em; font-style:normal; line-height:.85; }
-    .brand-mark { display:inline-block; width:36px; height:36px; flex:0 0 36px; background:url("carrinho1-sem-fundo.png") center / contain no-repeat; }
-    .nav-links { position:fixed; z-index:19; top:var(--header-h); left:0; right:0; display:flex; flex-direction:column; gap:4px; padding:14px 16px 20px; background:var(--white); color:var(--ink); border-bottom:1px solid var(--line); box-shadow:0 12px 26px rgba(20,15,10,.14); transform:translateY(-130%); opacity:0; visibility:hidden; transition:transform .3s ease, opacity .3s ease, visibility .3s ease; }
-    .nav-links.is-open { transform:translateY(0); opacity:1; visibility:visible; }
-    .nav-links a { width:100%; padding:13px 12px; border-radius:3px; color:var(--ink); font-size:1rem; font-weight:600; text-align:center; }
-    .nav-links a:hover, .nav-links a.active { color:var(--red); background:var(--warm); }
-    .menu-toggle { display:flex; align-items:center; justify-content:center; width:44px; height:44px; flex:0 0 44px; padding:0; border:0; background:transparent; color:currentColor; cursor:pointer; }
-    .menu-toggle span { position:relative; display:block; width:22px; height:2px; background:currentColor; transition:background .2s ease; }
-    .menu-toggle span::before, .menu-toggle span::after { content:""; position:absolute; left:0; display:block; width:22px; height:2px; background:currentColor; transition:transform .25s ease; }
-    .menu-toggle span::before { top:-7px; }
-    .menu-toggle span::after { top:7px; }
-    .menu-toggle[aria-expanded="true"] span { background:transparent; }
-    .menu-toggle[aria-expanded="true"] span::before { transform:translateY(7px) rotate(45deg); }
-    .menu-toggle[aria-expanded="true"] span::after { transform:translateY(-7px) rotate(-45deg); }
-
-    /* ---------- Botoes flutuantes ---------- */
-    .whatsapp-float, .instagram-float { position:fixed; z-index:16; right:14px; display:flex; align-items:center; justify-content:center; gap:9px; padding:13px; border-radius:50%; color:#fff; box-shadow:0 10px 25px rgba(0,0,0,.2); font-size:.8rem; font-weight:700; transition:transform .2s ease; }
-    .whatsapp-float { bottom:14px; background:#1caa59; }
-    .instagram-float { bottom:74px; background:#c13584; }
-    .whatsapp-float:hover, .instagram-float:hover { transform:translateY(-3px); }
-    .whatsapp-float span, .instagram-float span { display:none; }
-    .social-icon { display:block; width:22px; height:22px; flex:0 0 22px; fill:currentColor; shape-rendering:geometricPrecision; }
-    :focus-visible { outline:3px solid var(--yellow); outline-offset:3px; }
-
-    @media (min-width:600px) {
-      .whatsapp-float, .instagram-float { right:22px; padding:12px 17px; border-radius:3px; font-size:.82rem; }
-      .whatsapp-float { bottom:22px; }
-      .instagram-float { bottom:76px; }
-      .whatsapp-float span, .instagram-float span { display:inline; }
-      .social-icon { width:24px; height:24px; flex:0 0 24px; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: "DM Sans", sans-serif; line-height: 1.55; }
+    body.menu-open { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--red); font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2 { font-family: Fraunces, Georgia, serif; letter-spacing: -.035em; line-height: 1.04; }
+    h1 { max-width: 720px; margin-bottom: 22px; font-size: clamp(3rem, 7vw, 6.4rem); }
+    h2 { margin-bottom: 18px; font-size: clamp(2.35rem, 4.6vw, 4rem); }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 19px; border: 1px solid transparent; border-radius: 3px; font-weight: 700; font-size: .9rem; transition: transform .2s ease, background .2s ease, color .2s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-red { background: var(--red); color: var(--white); }
+    .button-red:hover { background: var(--red-deep); }
+    .button-light { background: var(--white); color: var(--red); }
+    .button-outline { border-color: rgba(255,255,255,.55); color: var(--white); }
+    .button-outline:hover { background: var(--white); color: var(--ink); }
+    .button-quiet { border-color: var(--line); color: var(--ink); background: transparent; }
+    .button-quiet:hover { border-color: var(--red); color: var(--red); }
+    .site-header { position: fixed; z-index: 20; top: 0; left: 0; width: 100%; border-bottom: 1px solid rgba(255,255,255,.14); color: var(--white); transition: background .3s ease, box-shadow .3s ease, color .3s ease; }
+    .site-header.scrolled { background: rgba(255,255,255,.97); color: var(--ink); box-shadow: 0 4px 20px rgba(20,15,10,.08); border-color: var(--line); }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; height: 78px; }
+    .brand { display: inline-flex; align-items: center; gap: 9px; padding: 8px 12px 8px 6px; background: var(--red); color: var(--white); font-weight: 700; font-size: 1.05rem; letter-spacing: -.02em; }
+    .brand-text em { display: block; color: #ffd400; font-family: Fraunces, Georgia, serif; font-size: 1.15em; font-style: normal; line-height: .8; }
+    .footer-brand .brand-text { order: 1; }.footer-brand .brand-mark { order: 2; }
+    .scrolled .brand-text em { color: #ffd400; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: .88rem; font-weight: 600; }
+    .nav-links a { opacity: .86; transition: opacity .2s ease, color .2s ease; }
+    .nav-links a:hover { opacity: 1; color: #ffd400; }
+    .scrolled .nav-links a:hover { color: var(--red); }
+    .header-contact { min-height: 40px; padding: 0 14px; font-size: .8rem; }
+    .menu-toggle { display: none; width: 42px; height: 42px; padding: 0; border: 0; background: transparent; color: currentColor; cursor: pointer; }
+    .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after { display: block; width: 22px; height: 2px; margin: auto; background: currentColor; transition: transform .2s ease; }
+    .menu-toggle span { position: relative; }
+    .menu-toggle span::before, .menu-toggle span::after { content: ""; position: absolute; left: 0; }
+    .menu-toggle span::before { top: -7px; }.menu-toggle span::after { top: 7px; }
+    .hero { position: relative; min-height: min(790px, 90vh); display: flex; align-items: center; overflow: hidden; color: var(--white); background: #4a1712 url("https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=2000&q=82") center/cover; }
+    .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16,10,8,.84) 0%, rgba(16,10,8,.55) 46%, rgba(16,10,8,.1) 100%); }
+    .hero::after { content: ""; position: absolute; right: -110px; bottom: -180px; width: 440px; height: 440px; border: 1px solid rgba(255,255,255,.17); border-radius: 50%; box-shadow: 0 0 0 55px rgba(255,255,255,.04), 0 0 0 110px rgba(255,255,255,.03); }
+    .hero-content { position: relative; z-index: 1; padding: 150px 0 100px; }
+    .hero h1 span { color: #ffd400; }
+    .hero-copy { max-width: 500px; margin-bottom: 30px; color: rgba(255,255,255,.85); font-size: 1.08rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .location-icon, .cart-icon { width: 17px; height: 17px; flex: 0 0 17px; fill: currentColor; }
+    .hero-note { display: flex; align-items: center; gap: 10px; margin-top: 74px; color: rgba(255,255,255,.8); font-size: .84rem; }
+    .hero-note strong { color: var(--white); }
+    .hero-note .star { color: #ffd400; font-size: 1.1rem; }
+    section { padding: 110px 0; }
+    .intro-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 100px; align-items: center; }
+    .intro-grid p { max-width: 560px; color: var(--muted); font-size: 1.05rem; }
+    .intro-lead { color: var(--ink) !important; font-size: 1.3rem !important; line-height: 1.4; }
+    .red-rule { width: 60px; height: 4px; margin: 25px 0; background: var(--red); }
+    .detail-list { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 34px; padding-top: 25px; border-top: 1px solid var(--line); }
+    .detail-list strong { display: block; margin-bottom: 3px; font-size: .9rem; }.detail-list span { color: var(--muted); font-size: .85rem; }
+    .band { background: var(--warm); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 35px; margin-bottom: 45px; }
+    .section-heading p { max-width: 380px; margin-bottom: 4px; color: var(--muted); }
+    .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .benefit { min-height: 235px; padding: 28px; background: var(--paper); transition: background .25s ease, transform .25s ease; }
+    .benefit:hover { position: relative; z-index: 1; background: var(--white); transform: translateY(-5px); box-shadow: var(--shadow); }
+    .benefit:nth-child(2), .benefit:nth-child(4), .benefit:nth-child(2):hover, .benefit:nth-child(4):hover { background: #ffd400; }
+    .benefit h3 { margin-bottom: 12px; color: var(--red); font-size: 1.15rem; }.benefit p { margin: 0; color: var(--muted); font-size: .98rem; }
+    .location-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 70px; align-items: stretch; }
+    .contact-stack { display: grid; gap: 0; margin: 36px 0; border-top: 1px solid var(--line); }
+    .contact-row { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); }.contact-row b { display: block; margin-bottom: 3px; font-size: .8rem; text-transform: uppercase; letter-spacing: .09em; }.contact-row span { color: var(--muted); font-size: .94rem; }.contact-icon { width: 22px; color: var(--red); font-size: 1.1rem; text-align: center; }
+    .map-frame { min-height: 440px; border: 8px solid var(--white); box-shadow: var(--shadow); background: #ddd; }.map-frame iframe { display: block; width: 100%; height: 100%; min-height: 424px; border: 0; filter: saturate(.75); }
+    .review-section { position: relative; overflow: hidden; background: var(--red); color: var(--white); }.review-section::before { content: "\201C"; position: absolute; top: -75px; left: 8%; color: rgba(255,255,255,.12); font-family: Georgia, serif; font-size: 23rem; line-height: 1; }.review-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.2fr; gap: 100px; align-items: center; }.review-section .eyebrow { color: #ffd400; }.review-section h2 { max-width: 460px; }.review-main { display: flex; align-items: center; gap: 24px; }.rating-number { font-family: Fraunces, Georgia, serif; font-size: 5.5rem; line-height: 1; }.rating-stars { color: #ffd400; font-size: 1.2rem; letter-spacing: 3px; }.review-copy { margin: 22px 0 0; color: rgba(255,255,255,.8); font-size: .96rem; }
+    footer { padding: 58px 0 25px; background: #171717; color: #fff; }.footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 45px; padding-bottom: 50px; }.footer-brand { margin-bottom: 18px; }.footer-about { max-width: 240px; color: #aaa; font-size: .88rem; }.footer-title { margin-bottom: 17px; color: #ffd400; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }.footer-links { display: grid; gap: 8px; color: #aaa; font-size: .88rem; }.footer-links a:hover { color: #fff; }.copyright { display: flex; justify-content: space-between; gap: 20px; padding-top: 22px; border-top: 1px solid #333; color: #888; font-size: .75rem; }
+    .whatsapp-float, .instagram-float { position: fixed; z-index: 15; right: 22px; display: flex; align-items: center; gap: 9px; padding: 12px 17px; border-radius: 3px; color: #fff; box-shadow: 0 10px 25px rgba(0,0,0,.2); font-size: .82rem; font-weight: 700; transition: transform .2s ease; }.whatsapp-float { bottom: 22px; background: #1caa59; }.instagram-float { bottom: 76px; background: #c13584; }.whatsapp-float:hover, .instagram-float:hover { transform: translateY(-3px); }.social-icon { display: block; width: 24px; height: 24px; flex: 0 0 24px; fill: currentColor; shape-rendering: geometricPrecision; }
+    :focus-visible { outline: 3px solid #ffd400; outline-offset: 3px; }
+    .brand-mark { display: inline-block; width: 42px; height: 42px; background: url("carrinho1-sem-fundo.png") center / contain no-repeat; }
+    @media (max-width: 760px) {
+      .menu-toggle { display: flex; align-items: center; justify-content: center; }
+      .nav-links { position: fixed; top: 78px; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 4px; padding: 16px 20px 20px; background: var(--white); color: var(--ink); box-shadow: 0 12px 24px rgba(20,15,10,.12); display: none; }
+      .nav-links.is-open { display: flex; }
+      .nav-links a { opacity: 1; color: var(--ink); width: 100%; padding: 10px 0; }
+      .nav-links a:hover { color: var(--red); }
+      .intro-grid, .location-grid, .review-inner { grid-template-columns: 1fr; gap: 40px; }
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .hero-content { padding: 130px 0 70px; }
     }
-
-    @media (min-width:769px) {
-      :root { --header-h:78px; }
-      .container { width:calc(100% - 40px); }
-      h1 { margin-bottom:22px; font-size:clamp(3rem,6vw,5.4rem); }
-      h2 { margin-bottom:18px; font-size:clamp(2.35rem,4.6vw,4rem); }
-      .brand { gap:9px; padding:8px 12px 8px 6px; font-size:1.05rem; }
-      .brand-mark { width:42px; height:42px; flex:0 0 42px; }
-      .nav-links { position:static; flex-direction:row; align-items:center; gap:25px; width:auto; padding:0; background:transparent; border:0; box-shadow:none; transform:none; opacity:1; visibility:visible; color:inherit; font-size:.88rem; font-weight:600; }
-      .nav-links a { width:auto; padding:0; border-radius:0; color:inherit; font-size:.88rem; }
-      .nav-links a:hover, .nav-links a.active { background:transparent; color:var(--red); }
-      .menu-toggle { display:none; }
-    }
-
-    @media (prefers-reduced-motion:reduce) {
-      html { scroll-behavior:auto; }
-      * { transition-duration:.01ms !important; animation-duration:.01ms !important; }
-    }
-
-    /* ---------- Home ---------- */
-    .site-header { position:fixed; z-index:20; top:0; left:0; width:100%; border-bottom:1px solid rgba(255,255,255,.14); color:var(--white); transition:background .3s ease, box-shadow .3s ease, color .3s ease; }
-    .site-header.scrolled { background:rgba(255,255,255,.97); color:var(--ink); box-shadow:0 4px 20px rgba(20,15,10,.08); border-color:var(--line); }
-    .hero { position:relative; display:flex; align-items:center; overflow:hidden; color:var(--white); background:#4a1712 url("https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1600&q=80") center/cover; }
-    .hero::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(16,10,8,.88) 0%, rgba(16,10,8,.72) 55%, rgba(16,10,8,.6) 100%); }
-    .hero-content { position:relative; z-index:1; width:calc(100% - 32px); max-width:100%; max-width:1160px; margin:0 auto; padding:120px 0 70px; }
-    .hero h1 span { color:var(--yellow); }
-    .hero-copy { max-width:500px; margin-bottom:26px; color:rgba(255,255,255,.88); font-size:1rem; }
-    .hero-actions { display:flex; flex-direction:column; gap:12px; }
-    .hero-actions .button { width:100%; }
-    .location-icon, .cart-icon { width:17px; height:17px; flex:0 0 17px; fill:currentColor; }
-    .hero-note { display:flex; align-items:center; gap:10px; margin-top:40px; color:rgba(255,255,255,.82); font-size:.84rem; }
-    .hero-note strong { color:var(--white); }
-    .hero-note .star { color:var(--yellow); font-size:1.1rem; }
-    section { padding:64px 0; }
-    .band { background:var(--warm); }
-    .section-heading { display:flex; flex-direction:column; align-items:flex-start; gap:16px; margin-bottom:32px; }
-    .section-heading p { max-width:52ch; margin:0; }
-    .benefits-grid { display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
-    .benefit { padding:24px; background:var(--paper); transition:background .25s ease, transform .25s ease; }
-    .benefit:nth-child(2), .benefit:nth-child(4) { background:var(--yellow); }
-    .benefit h3 { margin-bottom:10px; color:var(--red); font-size:1.15rem; }
-    .benefit p { margin:0; font-size:.98rem; }
-    .location-grid { display:grid; grid-template-columns:1fr; gap:32px; align-items:stretch; }
-    .contact-stack { display:grid; margin:28px 0; border-top:1px solid var(--line); }
-    .contact-row { display:flex; gap:14px; padding:18px 0; border-bottom:1px solid var(--line); }
-    .contact-row b { display:block; margin-bottom:3px; color:var(--ink); font-size:.78rem; letter-spacing:.09em; text-transform:uppercase; }
-    .contact-row span { color:var(--muted); font-size:.94rem; }
-    .contact-icon { width:22px; flex:0 0 22px; color:var(--red); font-size:1.1rem; text-align:center; }
-    .map-frame { min-height:320px; border:6px solid var(--white); background:#ddd; box-shadow:var(--shadow); }
-    .map-frame iframe { display:block; width:100%; height:100%; min-height:308px; border:0; filter:saturate(.75); }
-    .review-section { position:relative; overflow:hidden; background:var(--red); color:var(--white); }
-    .review-section::before { content:"\201C"; pointer-events:none; position:absolute; top:-40px; left:12px; color:rgba(255,255,255,.12); font-family:Georgia,serif; font-size:11rem; line-height:1; }
-    .review-inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr; gap:34px; align-items:center; }
-    .review-section .eyebrow { color:var(--yellow); }
-    .review-section h2 { max-width:460px; }
-    .review-main { display:flex; align-items:center; gap:18px; }
-    .rating-number { font-family:Fraunces,Georgia,serif; font-size:3.4rem; line-height:1; }
-    .rating-stars { color:var(--yellow); font-size:1.15rem; letter-spacing:3px; }
-    .review-copy { margin:18px 0 22px; color:rgba(255,255,255,.85); font-size:.96rem; }
-    footer { padding:48px 0 24px; background:#171717; color:#fff; }
-    .footer-grid { display:grid; grid-template-columns:1fr; gap:30px; padding-bottom:36px; }
-    .footer-brand { margin-bottom:16px; }
-    .footer-brand .brand-text { order:1; } .footer-brand .brand-mark { order:2; }
-    .footer-about { max-width:40ch; color:#aaa; font-size:.88rem; }
-    .footer-title { margin-bottom:14px; color:var(--yellow); font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
-    .footer-links { display:grid; gap:10px; color:#aaa; font-size:.88rem; }
-    .footer-links a:hover { color:#fff; }
-    .copyright { display:flex; flex-direction:column; gap:8px; padding-top:20px; border-top:1px solid #333; color:#888; font-size:.75rem; }
-
-    @media (min-width:600px) {
-      .hero-actions { flex-direction:row; flex-wrap:wrap; }
-      .hero-actions .button { width:auto; }
-      .benefits-grid { grid-template-columns:1fr 1fr; }
-      .footer-grid { grid-template-columns:1fr 1fr; gap:34px; }
-      .copyright { flex-direction:row; justify-content:space-between; gap:20px; }
-    }
-
-    @media (min-width:769px) {
-      .scrolled .nav-links a { color:var(--ink); }
-      .nav-links a { opacity:.9; }
-      .nav-links a:hover { opacity:1; color:var(--yellow); }
-      .scrolled .nav-links a:hover { color:var(--red); }
-      .hero { min-height:min(790px,90vh); }
-      .hero-content { width:calc(100% - 40px); padding:150px 0 100px; }
-      .hero-copy { margin-bottom:30px; font-size:1.08rem; }
-      .hero-note { margin-top:60px; }
-      section { padding:96px 0; }
-      .section-heading { flex-direction:row; align-items:flex-end; justify-content:space-between; gap:35px; margin-bottom:45px; }
-      .section-heading p { max-width:380px; margin-bottom:4px; }
-      .benefit { min-height:235px; padding:28px; }
-      .benefit:hover { position:relative; z-index:1; background:var(--white); transform:translateY(-5px); box-shadow:var(--shadow); }
-      .benefit:nth-child(2):hover, .benefit:nth-child(4):hover { background:var(--yellow); }
-      .location-grid { grid-template-columns:.85fr 1.15fr; gap:60px; }
-      .contact-stack { margin:36px 0; }
-      .map-frame { min-height:440px; border-width:8px; }
-      .map-frame iframe { min-height:424px; }
-      .review-section::before { top:-75px; left:8%; font-size:20rem; }
-      .review-inner { grid-template-columns:1fr 1.2fr; gap:70px; }
-      .rating-number { font-size:5.5rem; }
-      .review-main { gap:24px; }
-      footer { padding:58px 0 25px; }
-      .footer-grid { grid-template-columns:1.3fr 1fr 1fr 1fr; gap:45px; padding-bottom:50px; }
-    }
-
-    @media (min-width:960px) {
-      .benefits-grid { grid-template-columns:repeat(4,1fr); }
+    @media (max-width: 480px) {
+      .benefits-grid, .footer-grid { grid-template-columns: 1fr; }
+      .whatsapp-float span, .instagram-float span { display: none; }
+      .whatsapp-float, .instagram-float { padding: 12px; border-radius: 50%; }
     }
   </style>
 </head>
 <body>
   <header class="site-header" id="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href="index.html#inicio" aria-label="Mercado Aymoré, página inicial"><span class="brand-text">Mercado <em>Aymoré</em></span><span class="brand-mark" aria-hidden="true"></span></a>
-      <nav class="nav-links" id="nav-links" aria-label="Navegação principal"><a class="active" href="index.html#inicio">Início</a><a href="sobre.html">Sobre</a><a href="produtos.html">Produtos</a><a href="promocoes.html">Promoções</a></nav>
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      <a class="brand" href="#inicio" aria-label="Mercado Aymoré, início">
+        <span class="brand-text">Mercado <em>Aymoré</em></span>
+        <span class="brand-mark" aria-hidden="true"></span>
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Navegação principal">
+        <a href="#inicio">Início</a><a href="sobre.html">Sobre</a><a href="produtos.html">Produtos</a><a href="promocoes.html">Promoções</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
     </div>
   </header>
 
   <main>
     <section class="hero" id="inicio">
-      <div class="hero-content">
+      <div class="container hero-content">
         <span class="eyebrow">Do jeitinho do seu bairro</span>
         <h1>O mercado de confiança da sua <span>vizinhança.</span></h1>
         <p class="hero-copy">Preço justo, produto fresquinho e aquele atendimento que conhece você pelo nome. Venha fazer suas compras com a gente.</p>
-        <div class="hero-actions">
-          <a class="button button-red" href="#localizacao"><span>Como chegar</span><svg class="location-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg></a>
-          <a class="button button-outline" href="#diferenciais"><span>Por que comprar aqui</span><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1A2.4 2.4 0 0 0 9.45 16H18v-2H9.45a.4.4 0 0 1-.39-.32L8.8 13H18a2 2 0 0 0 1.94-1.52L21.5 5H7.1l-.42-2H3v1Zm5.4 3h10.54l-.95 3.99a.4.4 0 0 1-.39.31H9.23L8.4 7ZM10 19a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm7 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></svg></a>
-        </div>
+        <div class="hero-actions"><a class="button button-red" href="#localizacao"><span>Como chegar</span><svg class="location-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg></a><a class="button button-outline" href="#diferenciais"><span>Por que comprar aqui</span><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1A2.4 2.4 0 0 0 9.45 16H18v-2H9.45a.4.4 0 0 1-.39-.32L8.8 13H18a2 2 0 0 0 1.94-1.52L21.5 5H7.1l-.42-2H3v1Zm5.4 3h10.54l-.95 3.99a.4.4 0 0 1-.39.31H9.23L8.4 7ZM10 19a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm7 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></svg></a></div>
         <div class="hero-note"><span class="star" aria-hidden="true">★</span><span><strong>4,0 no Google</strong> · 461 avaliações de quem compra aqui</span></div>
       </div>
     </section>
 
     <section class="band" id="diferenciais">
-      <div class="container">
-        <div class="section-heading">
-          <div><span class="eyebrow">Por que o Aymoré?</span><h2>O essencial, bem feito.</h2></div>
-          <p>Uma experiência simples, cuidadosa e sem complicação para você comprar do seu jeito.</p>
-        </div>
+      <div class="container"><div class="section-heading"><div><span class="eyebrow">Por que o Aymoré?</span><h2>O essencial, bem feito.</h2></div><p>Uma experiência simples, cuidadosa e sem complicação para você comprar do seu jeito.</p></div>
         <div class="benefits-grid">
           <article class="benefit"><h3>Frescor de verdade</h3><p>Escolhemos tudo com cuidado para chegar bonito e gostoso na sua mesa.</p></article>
           <article class="benefit"><h3>Preço que cabe</h3><p>Ofertas e preços justos para você levar o que precisa sem susto no caixa.</p></article>
@@ -227,82 +150,33 @@
     </section>
 
     <section id="localizacao">
-      <div class="container location-grid">
-        <div>
-          <span class="eyebrow">Venha visitar</span>
-          <h2>Estamos no caminho da sua casa.</h2>
-          <p>Fácil de encontrar em Riachão, Nova Iguaçu. Passe para uma compra rápida ou para fazer a feira da semana.</p>
-          <div class="contact-stack">
-            <a class="contact-row" href="tel:+552137944437"><span class="contact-icon" aria-hidden="true">✆</span><span><b>Telefone</b><span>(21) 3794-4437</span></span></a>
-            <div class="contact-row"><span class="contact-icon" aria-hidden="true">◷</span><span><b>Horário</b><span>Aberto hoje até 21:00</span></span></div>
-            <div class="contact-row"><span class="contact-icon" aria-hidden="true">⌖</span><span><b>Endereço</b><span>Estr. da Palhada, 2760 - Riachão<br>Nova Iguaçu - RJ, 26279-155</span></span></div>
-          </div>
-          <a class="button button-red" href="https://www.google.com/maps/dir/?api=1&amp;destination=Estrada+da+Palhada%2C+2760%2C+Nova+Igua%C3%A7u%2C+RJ" target="_blank" rel="noopener">Abrir rota no Google Maps <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="map-frame"><iframe title="Mapa do Mercado Aymoré" loading="lazy" src="https://www.google.com/maps?q=Mercado+Aymore,+Estrada+da+Palhada,+2760,+Nova+Iguacu,+RJ&amp;output=embed"></iframe></div>
-      </div>
+      <div class="container location-grid"><div><span class="eyebrow">Venha visitar</span><h2>Estamos no caminho da sua casa.</h2><p>Fácil de encontrar em Riachão, Nova Iguaçu. Passe para uma compra rápida ou para fazer a feira da semana.</p>
+        <div class="contact-stack"><a class="contact-row" href="tel:+552137944437"><span class="contact-icon" aria-hidden="true">⌕</span><span><b>Telefone</b><span>(21) 3794-4437</span></span></a><div class="contact-row"><span class="contact-icon" aria-hidden="true">◷</span><span><b>Horário</b><span>Aberto hoje até 21:00</span></span></div><div class="contact-row"><span class="contact-icon" aria-hidden="true">⌖</span><span><b>Endereço</b><span>Estr. da Palhada, 2760 - Riachão<br>Nova Iguaçu - RJ, 26279-155</span></span></div></div>
+        <a class="button button-red" href="https://www.google.com/maps/dir/?api=1&destination=Estrada+da+Palhada%2C+2760%2C+Nova+Igua%C3%A7u%2C+RJ" target="_blank" rel="noopener">Abrir rota no Google Maps <span aria-hidden="true">↗</span></a>
+      </div><div class="map-frame"><iframe title="Mapa do Mercado Aymoré" loading="lazy" src="https://www.google.com/maps?q=Mercado+Aymore,+Estrada+da+Palhada,+2760,+Nova+Iguacu,+RJ&output=embed"></iframe></div></div>
     </section>
 
-    <section class="review-section">
-      <div class="container review-inner">
-        <div><span class="eyebrow">Quem já conhece</span><h2>Compra boa é aquela que dá vontade de voltar.</h2></div>
-        <div>
-          <div class="review-main"><span class="rating-number">4,0</span><div><div class="rating-stars" aria-label="4 de 5 estrelas">★★★★<span style="opacity:.4">★</span></div><strong>461 avaliações no Google</strong></div></div>
-          <p class="review-copy">A opinião de quem passa por aqui todos os dias ajuda a gente a continuar melhorando. Obrigado por fazer parte do Mercado Aymoré.</p>
-          <a class="button button-light" href="https://www.google.com/search?q=Mercado+Aymor%C3%A9+Nova+Igua%C3%A7u" target="_blank" rel="noopener">Ver avaliações <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </section>
+    <section class="review-section"><div class="container review-inner"><div><span class="eyebrow">Quem já conhece</span><h2>Compra boa é aquela que dá vontade de voltar.</h2></div><div><div class="review-main"><span class="rating-number">4,0</span><div><div class="rating-stars" aria-label="4 de 5 estrelas">★★★★<span style="opacity:.4">★</span></div><strong>461 avaliações no Google</strong></div></div><p class="review-copy">A opinião de quem passa por aqui todos os dias ajuda a gente a continuar melhorando. Obrigado por fazer parte do Mercado Aymoré.</p><a class="button button-light" href="https://www.google.com/search?q=Mercado+Aymor%C3%A9+Nova+Igua%C3%A7u" target="_blank" rel="noopener">Ver avaliações <span aria-hidden="true">↗</span></a></div></div></section>
   </main>
 
-  <footer id="contato">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand-col">
-          <a class="brand footer-brand" href="#inicio"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text">Mercado <em>Aymoré</em></span></a>
-          <p class="footer-about">O mercado de bairro que cuida das suas compras como você cuidaria.</p>
-        </div>
-        <div><div class="footer-title">Visite</div><div class="footer-links"><span>Estr. da Palhada, 2760</span><span>Riachão · Nova Iguaçu - RJ</span><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Estrada+da+Palhada%2C+2760%2C+Nova+Igua%C3%A7u%2C+RJ" target="_blank" rel="noopener">Como chegar ↗</a></div></div>
-        <div><div class="footer-title">Fale com a gente</div><div class="footer-links"><a href="tel:+552137944437">(21) 3794-4437</a><a href="https://wa.me/552137944437?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Mercado%20Aymor%C3%A9" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.instagram.com/mercadoaymore" target="_blank" rel="noopener">Instagram ↗</a></div></div>
-        <div><div class="footer-title">Funcionamento</div><div class="footer-links"><span>Aberto até 21:00</span><span>Confira o horário antes de sair</span><a href="#inicio">Voltar ao topo ↑</a></div></div>
-      </div>
-      <div class="copyright"><span>© 2026 Mercado Aymoré. Todos os direitos reservados.</span><span>Riachão, Nova Iguaçu - RJ</span></div>
-    </div>
-  </footer>
-  <a class="instagram-float" href="https://www.instagram.com/mercadoaymore" target="_blank" rel="noopener" aria-label="Acessar o Instagram do Mercado Aymore"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm9.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg><span>Instagram</span></a>
-  <a class="whatsapp-float" href="https://wa.me/552137944437?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Mercado%20Aymor%C3%A9" target="_blank" rel="noopener" aria-label="Falar com o Mercado Aymore pelo WhatsApp"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.66 15L2 22l5.18-1.31A10 10 0 1 0 12 2Zm0 2a8 8 0 0 1 6.93 12L18.2 17.1l.23.36A8 8 0 0 1 7.07 18.2l-.36-.23-2.67.68.7-2.6-.25-.38A8 8 0 1 1 12 4Zm-3.1 3.2c-.2 0-.52.08-.8.39-.28.3-1.08 1.05-1.08 2.57s1.1 2.98 1.25 3.19c.15.2 2.14 3.42 5.26 4.65 2.6 1.03 3.13.83 3.69.78.56-.05 1.8-.74 2.05-1.46.25-.72.25-1.33.17-1.46-.08-.13-.3-.2-.64-.37-.33-.17-1.98-.98-2.28-1.09-.3-.12-.52-.17-.74.17-.22.33-.85 1.09-1.04 1.31-.19.22-.38.25-.7.08-.33-.17-1.38-.51-2.63-1.63-.97-.87-1.62-1.94-1.81-2.27-.19-.33-.02-.52.14-.69.14-.14.33-.38.5-.57.16-.2.22-.33.33-.55.11-.22.06-.42-.03-.59-.08-.17-.74-1.83-1.01-2.5-.27-.65-.54-.56-.74-.56Z"/></svg><span>WhatsApp</span></a>
+  <footer id="contato"><div class="container"><div class="footer-grid"><div class="footer-brand-col"><a class="brand footer-brand" href="#inicio"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text">Mercado <em>Aymoré</em></span></a><p class="footer-about">O mercado de bairro que cuida das suas compras como você cuidaria.</p></div><div><div class="footer-title">Visite</div><div class="footer-links"><span>Estr. da Palhada, 2760</span><span>Riachão · Nova Iguaçu - RJ</span><a href="https://www.google.com/maps/dir/?api=1&destination=Estrada+da+Palhada%2C+2760%2C+Nova+Igua%C3%A7u%2C+RJ" target="_blank" rel="noopener">Como chegar ↗</a></div></div><div><div class="footer-title">Fale com a gente</div><div class="footer-links"><a href="tel:+552137944437">(21) 3794-4437</a><a data-whatsapp href="https://wa.me/552137944437?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Mercado%20Aymor%C3%A9" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.instagram.com/mercadoaymore" target="_blank" rel="noopener">Instagram ↗</a></div></div><div><div class="footer-title">Funcionamento</div><div class="footer-links"><span>Aberto até 21:00</span><span>Confira o horário antes de sair</span><a href="#inicio">Voltar ao topo ↑</a></div></div></div><div class="copyright"><span>© 2026 Mercado Aymoré. Todos os direitos reservados.</span><span>Riachão, Nova Iguaçu - RJ</span></div></div></footer>
+  <a class="instagram-float" href="https://www.instagram.com/mercadoaymore" target="_blank" rel="noopener" aria-label="Acessar o Instagram do Mercado Aymoré"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm9.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg><span>Instagram</span></a><a class="whatsapp-float" data-whatsapp href="https://wa.me/552137944437?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Mercado%20Aymor%C3%A9" target="_blank" rel="noopener" aria-label="Falar com o Mercado Aymoré pelo WhatsApp"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-1.732-.866-2.868-1.548-4.01-3.507-.303-.522.302-.483.865-1.61.098-.198.05-.371-.05-.52-.099-.148-.222-.024-.348-.198-.126-.173-1.077-2.59-1.305-2.94-.198-.32-.4-.298-.6-.298h-.51c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.04 2.876 1.19 3.076.148.198 2.02 3.084 4.901 4.202 2.881 1.117 2.881.744 3.401.696.52-.05 1.686-.69 1.928-1.36.242-.669.242-1.24.17-1.36-.072-.121-.27-.198-.57-.347z"/><path d="M20.52 3.449C12.831-3.984.106 1.407.101 11.91c0 2.18.529 4.284 1.508 6.169L0 24l6.097-1.593a11.95 11.95 0 0 0 5.837 1.502h.005c9.412 0 15.62-9.95 12.164-18.18a12.02 12.02 0 0 0-3.583-2.28zM12.05 21.788a9.788 9.788 0 0 1-5.166-1.41l-.371-.221-3.837 1.006 1.024-3.744-.242-.386a9.77 9.77 0 0 1-1.542-5.271c0-5.42 4.408-9.827 9.828-9.827 5.421 0 9.828 4.408 9.828 9.827 0 5.42-4.407 9.828-9.828 9.828z"/></svg><span>WhatsApp</span></a>
   <script>
-    (function () {
-      var toggle = document.getElementById('menu-toggle');
-      var nav = document.getElementById('nav-links');
-      if (!toggle || !nav) return;
-      var close = function () {
-        nav.classList.remove('is-open');
-        document.body.classList.remove('menu-open');
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Abrir menu');
-      };
-      toggle.addEventListener('click', function () {
-        var open = nav.classList.toggle('is-open');
-        document.body.classList.toggle('menu-open', open);
-        toggle.setAttribute('aria-expanded', String(open));
-        toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
-      });
-      nav.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', close); });
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
-      window.addEventListener('resize', function () { if (window.innerWidth > 768) close(); });
-    })();
-  </script>
-  <script>
-    (function () {
-      var el = document.getElementById('site-header');
-      if (!el) return;
-      var set = function () { el.classList.toggle('scrolled', window.scrollY > 25 || document.body.classList.contains('menu-open')); };
-      set();
-      window.addEventListener('scroll', set, { passive: true });
-      var btn = document.getElementById('menu-toggle');
-      if (btn) btn.addEventListener('click', function () { setTimeout(set, 0); });
-    })();
+    const header = document.querySelector('#site-header');
+    const menuToggle = document.querySelector('#menu-toggle');
+    const navLinks = document.querySelector('#nav-links');
+    const setHeaderState = () => header.classList.toggle('scrolled', window.scrollY > 25);
+    setHeaderState();
+    window.addEventListener('scroll', setHeaderState, { passive: true });
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('is-open');
+      document.body.classList.toggle('menu-open', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('is-open'); document.body.classList.remove('menu-open'); menuToggle.setAttribute('aria-expanded', 'false'); menuToggle.setAttribute('aria-label', 'Abrir menu');
+    }));
   </script>
 </body>
 </html>
