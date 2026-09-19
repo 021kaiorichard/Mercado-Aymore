@@ -313,6 +313,7 @@ async function loadProducts() {
 
   try {
     const response = await fetch(getSanityUrl(PRODUCT_QUERY));
+    if (!response.ok) throw new Error(`Sanity HTTP ${response.status}`);
     const result = await response.json();
     cachedProducts = result.result || result.products || [];
     renderProducts(cachedProducts, 'all');
@@ -338,6 +339,7 @@ async function loadPromotions() {
 
   try {
     const response = await fetch(getSanityUrl(PROMOTION_QUERY));
+    if (!response.ok) throw new Error(`Sanity HTTP ${response.status}`);
     const result = await response.json();
     const promotions = result.result || result.promotions || [];
 

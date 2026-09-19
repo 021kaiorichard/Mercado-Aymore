@@ -1,15 +1,14 @@
 const SANITY_CONFIG = {
   projectId: 'rv1fw9tb',
   dataset: 'production',
-  proxyBaseUrl: 'http://localhost:3001/api',
+  apiVersion: 'v2024-01-01',
 };
 
-const PRODUCT_QUERY = `*[_type == "product"] | order(_createdAt desc) { _id, name, category, price, description, featured, image { asset -> { _ref } } }`;
-const PROMOTION_QUERY = `*[_type == "promotion" && active == true] | order(_createdAt desc) { _id, title, description, discount, active, image { asset -> { _ref } }, startDate, endDate }`;
+const PRODUCT_QUERY = `*[_type == "product" && !(_id in path("drafts.**"))] | order(_createdAt desc) { _id, name, category, price, description, featured, image { asset { _ref } } }`;
+const PROMOTION_QUERY = `*[_type == "promotion" && active == true && !(_id in path("drafts.**"))] | order(_createdAt desc) { _id, title, description, discount, active, image { asset { _ref } }, startDate, endDate }`;
 
 function getSanityUrl(query) {
-  const endpoint = query.includes('promotion') ? '/promotions' : '/products';
-  return `${SANITY_CONFIG.proxyBaseUrl}${endpoint}`;
+  return `https://${SANITY_CONFIG.projectId}.api.sanity.io/${SANITY_CONFIG.apiVersion}/data/query/${SANITY_CONFIG.dataset}?query=${encodeURIComponent(query)}`;
 }
 
 function formatPrice(value) {
@@ -23,7 +22,14 @@ function formatPrice(value) {
 function getImageUrl(image) {
   const ref = image?.asset?._ref;
   if (!ref) return '';
-  return `https://cdn.sanity.io/images/${SANITY_CONFIG.projectId}/${SANITY_CONFIG.dataset}/${ref}`;
+  // O _ref vem como "image-<id>-<largura>x<altura>-<formato>".
+  // Precisa virar "<id>-<largura>x<altura>.<formato>" para ser uma URL válida.
+  const withoutPrefix = ref.replace(/^image-/, '');
+  const lastDash = withoutPrefix.lastIndexOf('-');
+  const path = lastDash === -1
+    ? withoutPrefix
+    : `${withoutPrefix.slice(0, lastDash)}.${withoutPrefix.slice(lastDash + 1)}`;
+  return `https://cdn.sanity.io/images/${SANITY_CONFIG.projectId}/${SANITY_CONFIG.dataset}/${path}`;
 }
 
 function ensureStyles() {
@@ -34,9 +40,17 @@ function ensureStyles() {
   style.textContent = `
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+      justify-content: start;
+      gap: 18px;
       margin-top: 18px;
+    }
+    @media (min-width: 640px) {
+      .products-grid, .promotions-grid { gap: 24px; }
+    }
+    @media (min-width: 900px) {
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 280px)); }
+      .promotions-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 320px)); }
     }
     .product-card {
       display: flex;
@@ -48,7 +62,8 @@ function ensureStyles() {
     }
     .product-image {
       width: 100%;
-      height: 210px;
+      aspect-ratio: 4 / 3;
+      height: auto;
       background: #f6f0eb;
       overflow: hidden;
     }
@@ -90,7 +105,8 @@ function ensureStyles() {
     }
     .product-card h3 {
       margin: 0;
-      font-size: 1.35rem;
+      overflow-wrap: break-word;
+      font-size: 1.25rem;
       line-height: 1.2;
       font-family: Fraunces, Georgia, serif;
     }
@@ -101,6 +117,7 @@ function ensureStyles() {
     }
     .product-bottom {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
@@ -110,19 +127,26 @@ function ensureStyles() {
       font-size: 1.25rem;
       color: var(--ink, #171717);
     }
-    .product-bottom button {
-      padding: 10px 14px;
+    .product-bottom .product-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
       border: none;
       border-radius: 4px;
       background: var(--red, #e30613);
       color: var(--white, #fff);
+      font-size: 0.9rem;
       font-weight: 700;
+      text-decoration: none;
       cursor: pointer;
     }
     .promotions-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+      justify-content: start;
+      gap: 18px;
       margin-top: 18px;
     }
     .promotion-card {
@@ -133,7 +157,8 @@ function ensureStyles() {
     }
     .promotion-image {
       width: 100%;
-      height: 210px;
+      aspect-ratio: 4 / 3;
+      height: auto;
       background: #f6f0eb;
     }
     .promotion-image img {
@@ -159,7 +184,8 @@ function ensureStyles() {
     }
     .promotion-card h3 {
       margin: 14px 0 12px;
-      font-size: 1.55rem;
+      overflow-wrap: break-word;
+      font-size: 1.4rem;
       line-height: 1.2;
       font-family: Fraunces, Georgia, serif;
     }
@@ -170,6 +196,7 @@ function ensureStyles() {
     }
     .promotion-meta {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
@@ -180,8 +207,9 @@ function ensureStyles() {
     .empty-state {
       display: grid;
       place-items: center;
+      grid-column: 1 / -1;
       min-height: 220px;
-      padding: 30px;
+      padding: 24px;
       border: 1px dashed #d9cfc2;
       background: var(--paper, #fbfaf8);
       text-align: center;
@@ -189,6 +217,23 @@ function ensureStyles() {
     }
   `;
   document.head.appendChild(style);
+}
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  }[char]));
+}
+
+const WHATSAPP_NUMBER = '552137944437';
+
+function whatsappLink(productName) {
+  const text = `Olá! Vim pelo site do Mercado Aymoré e queria saber sobre: ${productName || 'um produto'}`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 
 let cachedProducts = [];
@@ -210,24 +255,32 @@ function renderProducts(products, activeCategory) {
     return;
   }
 
-  root.innerHTML = products.map((product) => `
+  root.innerHTML = products.map((product) => {
+    const name = escapeHtml(product.name || 'Produto');
+    const category = escapeHtml(product.category || 'Mercado');
+    const description = escapeHtml(
+      product.description ? product.description.slice(0, 120) : 'Produto do Mercado Aymoré.'
+    );
+    const imageUrl = getImageUrl(product.image);
+    return `
     <article class="product-card">
       <div class="product-image">
-        ${getImageUrl(product.image)
-          ? `<img src="${getImageUrl(product.image)}" alt="${product.name || 'Produto'}">`
+        ${imageUrl
+          ? `<img src="${escapeHtml(imageUrl)}" alt="${name}" loading="lazy">`
           : `<div class="image-placeholder">Mercado Aymoré</div>`}
       </div>
       <div class="product-body">
-        <span class="product-pill">${product.category || 'Mercado'}</span>
-        <h3>${product.name || 'Produto'}</h3>
-        <p>${product.description ? product.description.slice(0, 120) : 'Produto do Mercado Aymoré.'}</p>
+        <span class="product-pill">${category}</span>
+        <h3>${name}</h3>
+        <p>${description}</p>
         <div class="product-bottom">
           <strong>${formatPrice(product.price)}</strong>
-          <button type="button">Solicitar</button>
+          <a class="product-cta" href="${escapeHtml(whatsappLink(product.name))}" target="_blank" rel="noopener">Solicitar</a>
         </div>
       </div>
     </article>
-  `).join('');
+  `;
+  }).join('');
 }
 
 function wireCatalogTabs() {
@@ -260,6 +313,7 @@ async function loadProducts() {
 
   try {
     const response = await fetch(getSanityUrl(PRODUCT_QUERY));
+    if (!response.ok) throw new Error(`Sanity HTTP ${response.status}`);
     const result = await response.json();
     cachedProducts = result.result || result.products || [];
     renderProducts(cachedProducts, 'all');
@@ -285,6 +339,7 @@ async function loadPromotions() {
 
   try {
     const response = await fetch(getSanityUrl(PROMOTION_QUERY));
+    if (!response.ok) throw new Error(`Sanity HTTP ${response.status}`);
     const result = await response.json();
     const promotions = result.result || result.promotions || [];
 
@@ -300,24 +355,29 @@ async function loadPromotions() {
       return;
     }
 
-    root.innerHTML = promotions.map((promotion) => `
+    root.innerHTML = promotions.map((promotion) => {
+      const title = escapeHtml(promotion.title || 'Promoção');
+      const description = escapeHtml(promotion.description || 'Oferta especial do Mercado Aymoré.');
+      const imageUrl = getImageUrl(promotion.image);
+      return `
       <article class="promotion-card">
         <div class="promotion-image">
-          ${getImageUrl(promotion.image)
-            ? `<img src="${getImageUrl(promotion.image)}" alt="${promotion.title || 'Promoção'}">`
+          ${imageUrl
+            ? `<img src="${escapeHtml(imageUrl)}" alt="${title}" loading="lazy">`
             : `<div class="image-placeholder">Oferta</div>`}
         </div>
         <div class="promotion-body">
           <span class="promotion-badge-tag">-${promotion.discount || 0}%</span>
-          <h3>${promotion.title || 'Promoção'}</h3>
-          <p>${promotion.description || 'Oferta especial do Mercado Aymoré.'}</p>
+          <h3>${title}</h3>
+          <p>${description}</p>
           <div class="promotion-meta">
             <span>${promotion.startDate ? new Date(promotion.startDate).toLocaleDateString('pt-BR') : 'Hoje'}</span>
             <span>${promotion.discount ? `-${promotion.discount}%` : 'Oferta'}</span>
           </div>
         </div>
       </article>
-    `).join('');
+    `;
+    }).join('');
   } catch (error) {
     console.error('Erro ao carregar promoções do Sanity:', error);
     root.innerHTML = `
