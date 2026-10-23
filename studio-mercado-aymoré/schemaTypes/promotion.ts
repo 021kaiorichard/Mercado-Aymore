@@ -17,6 +17,20 @@ export default defineType({
       type: 'text',
     }),
     defineField({
+      name: 'originalPrice',
+      title: 'Preço original',
+      type: 'number',
+      description: 'Preço normal do produto, antes do desconto.',
+      validation: (Rule) => Rule.min(0),
+    }),
+    defineField({
+      name: 'salePrice',
+      title: 'Preço promocional',
+      type: 'number',
+      description: 'Preço com desconto aplicado.',
+      validation: (Rule) => Rule.min(0),
+    }),
+    defineField({
       name: 'discount',
       title: 'Desconto',
       type: 'number',

@@ -5,7 +5,7 @@ const SANITY_CONFIG = {
 };
 
 const PRODUCT_QUERY = `*[_type == "product" && !(_id in path("drafts.**"))] | order(_createdAt desc) { _id, name, category, price, description, featured, image { asset { _ref } } }`;
-const PROMOTION_QUERY = `*[_type == "promotion" && active == true && !(_id in path("drafts.**"))] | order(_createdAt desc) { _id, title, description, discount, active, image { asset { _ref } }, startDate, endDate }`;
+const PROMOTION_QUERY = `*[_type == "promotion" && active == true && !(_id in path("drafts.**"))] | order(_createdAt desc) { _id, title, description, originalPrice, salePrice, discount, active, image { asset { _ref } }, startDate, endDate }`;
 
 function getSanityUrl(query) {
   return `https://${SANITY_CONFIG.projectId}.api.sanity.io/${SANITY_CONFIG.apiVersion}/data/query/${SANITY_CONFIG.dataset}?query=${encodeURIComponent(query)}`;
@@ -204,6 +204,22 @@ function ensureStyles() {
       font-size: 0.9rem;
       font-weight: 700;
     }
+    .promotion-prices {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin: 10px 0 0;
+    }
+    .promotion-old-price {
+      font-size: 0.9rem;
+      color: var(--muted, #66645f);
+      text-decoration: line-through;
+    }
+    .promotion-current-price {
+      font-size: 1.25rem;
+      color: var(--ink, #171717);
+      font-weight: 700;
+    }
     .empty-state {
       display: grid;
       place-items: center;
@@ -367,9 +383,15 @@ async function loadPromotions() {
             : `<div class="image-placeholder">Oferta</div>`}
         </div>
         <div class="promotion-body">
-          <span class="promotion-badge-tag">-${promotion.discount || 0}%</span>
+          <span class="promotion-badge-tag">-${escapeHtml(String(promotion.discount || 0))}%</span>
           <h3>${title}</h3>
           <p>${description}</p>
+          <div class="promotion-prices">
+            ${promotion.originalPrice != null
+              ? `<span class="promotion-old-price">${formatPrice(promotion.originalPrice)}</span>`
+              : ''}
+            <strong class="promotion-current-price">${promotion.salePrice != null ? formatPrice(promotion.salePrice) : 'Consulte preço'}</strong>
+          </div>
           <div class="promotion-meta">
             <span>${promotion.startDate ? new Date(promotion.startDate).toLocaleDateString('pt-BR') : 'Hoje'}</span>
             <span>${promotion.discount ? `-${promotion.discount}%` : 'Oferta'}</span>

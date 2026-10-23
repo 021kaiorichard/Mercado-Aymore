@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mercado-aymore.vercel.app/sitemap.xml
