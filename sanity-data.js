@@ -4,7 +4,7 @@ const SANITY_CONFIG = {
   apiVersion: 'v2024-01-01',
 };
 
-const PRODUCT_QUERY = `*[_type == "product" && !(_id in path("drafts.**"))] | order(_createdAt desc) { _id, name, category, price, description, featured, image { asset { _ref } } }`;
+const PRODUCT_QUERY = `*[_type == "product" && !(_id in path("drafts.**"))] | order(_createdAt desc) { _id, name, category, price, promotionActive, salePrice, discount, promotionStartDate, promotionEndDate, description, featured, image { asset { _ref } } }`;
 const PROMOTION_QUERY = `*[_type == "promotion" && active == true && !(_id in path("drafts.**"))] | order(_createdAt desc) { _id, title, description, originalPrice, salePrice, discount, active, image { asset { _ref } }, startDate, endDate }`;
 
 function getSanityUrl(query) {
@@ -126,6 +126,27 @@ function ensureStyles() {
     .product-bottom strong {
       font-size: 1.25rem;
       color: var(--ink, #171717);
+    }
+    .discount-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #fff0e3;
+      color: var(--red, #e30613);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-left: 8px;
+    }
+    .price-original {
+      font-size: 0.95rem;
+      color: var(--muted, #66645f);
+      text-decoration: line-through;
+      display: block;
+      margin-top: 4px;
     }
     .product-bottom .product-cta {
       display: inline-flex;
@@ -278,6 +299,11 @@ function renderProducts(products, activeCategory) {
       product.description ? product.description.slice(0, 120) : 'Produto do Mercado Aymoré.'
     );
     const imageUrl = getImageUrl(product.image);
+    const isOnPromotion = product.promotionActive && product.salePrice != null && product.salePrice > 0;
+    const originalPrice = Number(product.price || 0);
+    const salePrice = Number(product.salePrice || 0);
+    const discount = product.discount != null ? Number(product.discount) : (isOnPromotion && originalPrice > 0 ? Math.round(((originalPrice - salePrice) / originalPrice) * 100) : 0);
+    const discountLabel = discount > 0 ? `-${discount}%` : null;
     return `
     <article class="product-card">
       <div class="product-image">
@@ -290,7 +316,13 @@ function renderProducts(products, activeCategory) {
         <h3>${name}</h3>
         <p>${description}</p>
         <div class="product-bottom">
-          <strong>${formatPrice(product.price)}</strong>
+          ${isOnPromotion
+            ? `
+              <span class="discount-badge">${escapeHtml(discountLabel)}</span>
+              <strong>${formatPrice(salePrice)}</strong>
+              <span class="price-original">${formatPrice(originalPrice)}</span>
+            `
+            : `<strong>${formatPrice(originalPrice)}</strong>`}
           <a class="product-cta" href="${escapeHtml(whatsappLink(product.name))}" target="_blank" rel="noopener">Solicitar</a>
         </div>
       </div>
